@@ -18,7 +18,6 @@ import About from './components/About';
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
-    console.log('This is a private route...')
     let user = localStorage.getItem('jwtToken');
     return <Route {...rest} render={ (props) => {
         return user ? <Component {...rest} {...props} /> : <Redirect to='/login' />
@@ -33,7 +32,6 @@ function App() {
     let token;
     // If false: there is no token inside localStorage, then the user is not authenticated
     if (!localStorage.getItem('jwtToken')) {
-        console.log('is not authenticated...');
         setIsAuthenticated(false);
     } else {
         token = jwt_decode(localStorage.getItem('jwtToken'));
