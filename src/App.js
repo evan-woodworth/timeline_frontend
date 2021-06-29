@@ -15,6 +15,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
+import Test from './components/Test';
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
@@ -25,51 +26,52 @@ const PrivateRoute = ({component: Component, ...rest }) => {
 };
 
 function App() {
-  const [currentUser, setCurrentUser] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [currentUser, setCurrentUser] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  useEffect(() => {
-    let token;
-    // If false: there is no token inside localStorage, then the user is not authenticated
-    if (!localStorage.getItem('jwtToken')) {
-        setIsAuthenticated(false);
-    } else {
-        token = jwt_decode(localStorage.getItem('jwtToken'));
-        console.log('token', token);
-        setAuthToken(token);
-        setCurrentUser(token);
-    }
-  }, []);
+    useEffect(() => {
+        let token;
+        // If false: there is no token inside localStorage, then the user is not authenticated
+        if (!localStorage.getItem('jwtToken')) {
+            setIsAuthenticated(false);
+        } else {
+            token = jwt_decode(localStorage.getItem('jwtToken'));
+            console.log('token', token);
+            setAuthToken(token);
+            setCurrentUser(token);
+        }
+    }, []);
 
-  const nowCurrentUser = userData => {
-      console.log('---------- INSIDE NOWCURRENTUSER ----------');
-      setCurrentUser(userData);
-      setIsAuthenticated(true); 
-  };
+    const nowCurrentUser = userData => {
+        console.log('---------- INSIDE NOWCURRENTUSER ----------');
+        setCurrentUser(userData);
+        setIsAuthenticated(true); 
+    };
 
-  const handleLogout = () => {
-      if (localStorage.getItem('jwtToken')) {
-          localStorage.removeItem('jwtToken');    // If there is a token, then remove it
-          setCurrentUser(null);                   // Set the currentUser to null
-          setIsAuthenticated(false)               // Set is auth to false
-      }
-  };
+    const handleLogout = () => {
+        if (localStorage.getItem('jwtToken')) {
+            localStorage.removeItem('jwtToken');    // If there is a token, then remove it
+            setCurrentUser(null);                   // Set the currentUser to null
+            setIsAuthenticated(false)               // Set is auth to false
+        }
+    };
 
-  return (
-    <div className="App">
-      <Navbar isAuth={isAuthenticated}  handleLogout={handleLogout} />
-      <div className="container mt-5">
-          <Switch>
-              <Route exact path='/' component={Welcome} />
-              <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser}/>} />
-              <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated}/>} />
-              <Route path='/about' component={About} />
-              <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
-          </Switch>
-      </div>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+        <Navbar isAuth={isAuthenticated}  handleLogout={handleLogout} />
+        <div className="container mt-5">
+            <Switch>
+                <Route exact path='/' component={Welcome} />
+                <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser}/>} />
+                <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated}/>} />
+                <Route path='/about' component={About} />
+                <Route path='/test' component={Test} />
+                <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
+            </Switch>
+        </div>
+        <Footer />
+        </div>
+    );
 }
 
 export default App;
