@@ -22,7 +22,7 @@ const Login = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const userData = {username, password};
-        axios.post(`${REACT_APP_SERVER_URL}/api/users/`, userData)
+        axios.post(`${REACT_APP_SERVER_URL}/login/`, userData)
         .then(response => {
             const {token} = response.data;
             localStorage.setItem('jwtToken', token);        // Save token to localStorage

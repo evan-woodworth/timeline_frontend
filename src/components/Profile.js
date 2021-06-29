@@ -7,7 +7,7 @@ const Profile = (props) => {
     const {user_id, username, email, exp} = props.user;
     const expirationTime = new Date(exp * 1000);
     let currentTime = Date.now();
-    console.log(String(expirationTime));
+    // console.log('Time:', String(expirationTime));
 
     if (currentTime >= expirationTime) {
         handleLogout();
@@ -21,7 +21,7 @@ const Profile = (props) => {
         <p><strong>Email:</strong> { email }</p> 
         <p><strong>ID:</strong> { user_id }</p>
     </div>) 
-    : <h4>Loading...</h4>
+    : <h4>...Loading...</h4>
 
     const errorDiv = () => {
         return (

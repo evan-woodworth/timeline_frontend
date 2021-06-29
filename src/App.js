@@ -35,13 +35,14 @@ function App() {
         setIsAuthenticated(false);
     } else {
         token = jwt_decode(localStorage.getItem('jwtToken'));
-        console.log('token', token);
+        console.log('Token', token);
         setAuthToken(token);
         setCurrentUser(token);
     }
   }, []);
 
   const nowCurrentUser = userData => {
+    console.log(userData)
       console.log('---------- INSIDE NOWCURRENTUSER ----------');
       setCurrentUser(userData);
       setIsAuthenticated(true); 
@@ -57,12 +58,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar isAuth={isAuthenticated}  handleLogout={handleLogout} />
+      <Navbar isAuth={isAuthenticated} handleLogout={handleLogout} />
       <div className="container mt-5">
           <Switch>
-              <Route exact path='/' component={Welcome} />
-              <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser}/>} />
-              <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated}/>} />
+              <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
+              <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
+              <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
               <Route path='/about' component={About} />
               <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
           </Switch>
