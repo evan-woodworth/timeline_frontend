@@ -7,14 +7,14 @@ import jwt_decode from 'jwt-decode';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Signup = (props) => {
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-
-    const handleName = (e) => {
-        setName(e.target.value);
+    
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
     }
 
     const handleEmail = (e) => {
@@ -34,8 +34,8 @@ const Signup = (props) => {
 
         // Check to make sure passwords match
         if (password === confirmPassword && password.length >= 8) {
-            const payload = { name, email, password };
-            let url = `${REACT_APP_SERVER_URL}/api/users/signup`;
+            const payload = { username, email, password };
+            let url = `${REACT_APP_SERVER_URL}/signup/`;
             axios.post(url, payload)
             .then(response => {
                 console.log(response.data);
@@ -67,8 +67,8 @@ const Signup = (props) => {
                     <h2 className="py-2">Signup</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" name="name" value={name} onChange={handleName} className="form-control" />
+                            <label htmlFor="username">Username</label>
+                            <input type="text" name="username" value={username} onChange={handleUsername} className="form-control" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
