@@ -15,6 +15,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
+import Test from './components/Test';
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
@@ -25,8 +26,8 @@ const PrivateRoute = ({component: Component, ...rest }) => {
 };
 
 function App() {
-  const [currentUser, setCurrentUser] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [currentUser, setCurrentUser] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     let token;
@@ -49,11 +50,11 @@ function App() {
   };
 
   const handleLogout = () => {
-      if (localStorage.getItem('jwtToken')) {
-          localStorage.removeItem('jwtToken');    // If there is a token, then remove it
-          setCurrentUser(null);                   // Set the currentUser to null
-          setIsAuthenticated(false)               // Set is auth to false
-      }
+    if (localStorage.getItem('jwtToken')) {
+        localStorage.removeItem('jwtToken');    // If there is a token, then remove it
+        setCurrentUser(null);                   // Set the currentUser to null
+        setIsAuthenticated(false)               // Set is auth to false
+    }
   };
 
   return (
