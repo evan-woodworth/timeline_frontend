@@ -7,8 +7,8 @@ const setAuthToken = (token) => {
     if (token) {
         // If true: Apply the token to every request header, especially private routes
         axios.defaults.headers.common['Authorization'] = token;
-        console.log('----------- HEADERS -----------');
-        console.log(axios.defaults.headers.common);
+        // console.log('----------- HEADERS -----------');
+        // console.log(axios.defaults.headers.common);
     } else {
         // If false: Remove the authorization
         delete axios.defaults.headers.common['Authorization']
