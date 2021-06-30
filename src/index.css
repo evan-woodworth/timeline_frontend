@@ -1,3 +1,7 @@
+
+*{
+  font-family: 'Arimo', sans-serif;
+}
 body {
   margin: 0;
   padding: 0;
@@ -6,4 +10,42 @@ body {
 ​
 .logout-link {
   cursor: pointer;
+}
+
+header{
+  height: 50vh;
+  min-height: 400px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://media.lrng.org/a2/e1/c2afbe3d9779dbba9fb33b553a17dbdab446-1920x460.jpg');
+  background-position: center;
+  background-size: cover;
+  width: 100% !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: -1;
+}
+
+.header-tagline__container{
+  margin-top:16rem;
+  margin-bottom: 5rem;
+  /* border:2px solid white; */
+  color: white;
+
+
+}
+
+.nav-link--textcolor{
+  color:white !important;
+}
+
+/* .nav-link--textcolor:hover{
+  color:red !important;
+} */
+
+.nav-bg--color{
+  background-color: rgba(0,0,0,.5) !important;
+}
+
+li{
+  list-style-type: none;
 }

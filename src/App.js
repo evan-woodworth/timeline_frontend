@@ -15,6 +15,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
+import NewTimeline from './components/NewTimeline'
 import Test from './components/Test';
 
 // PRIVATE ROUTE COMPONENTS
@@ -63,6 +64,7 @@ function App() {
       <div className="container mt-5">
           <Switch>
               <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
+              <Route path='/newtimeline' component={NewTimeline} />
               <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
               <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
               <Route path='/about' component={About} />
