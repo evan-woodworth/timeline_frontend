@@ -27,8 +27,8 @@ const PrivateRoute = ({component: Component, ...rest }) => {
 };
 
 function App() {
-    const [currentUser, setCurrentUser] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [currentUser, setCurrentUser] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     let token;
@@ -37,17 +37,16 @@ function App() {
         setIsAuthenticated(false);
     } else {
         token = jwt_decode(localStorage.getItem('jwtToken'));
-        console.log('Token', token);
+        // console.log('Token', token);
         setAuthToken(token);
         setCurrentUser(token);
     }
   }, []);
 
   const nowCurrentUser = userData => {
-    console.log(userData)
-      console.log('---------- INSIDE NOWCURRENTUSER ----------');
-      setCurrentUser(userData);
-      setIsAuthenticated(true); 
+    console.log('---------- INSIDE NOWCURRENTUSER ----------');
+    setCurrentUser(userData);
+    setIsAuthenticated(true); 
   };
 
   const handleLogout = () => {
