@@ -26,8 +26,8 @@ const PrivateRoute = ({component: Component, ...rest }) => {
 };
 
 function App() {
-    const [currentUser, setCurrentUser] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [currentUser, setCurrentUser] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     let token;
@@ -36,17 +36,16 @@ function App() {
         setIsAuthenticated(false);
     } else {
         token = jwt_decode(localStorage.getItem('jwtToken'));
-        console.log('Token', token);
+        // console.log('Token', token);
         setAuthToken(token);
         setCurrentUser(token);
     }
   }, []);
 
   const nowCurrentUser = userData => {
-    console.log(userData)
-      console.log('---------- INSIDE NOWCURRENTUSER ----------');
-      setCurrentUser(userData);
-      setIsAuthenticated(true); 
+    console.log('---------- INSIDE NOWCURRENTUSER ----------');
+    setCurrentUser(userData);
+    setIsAuthenticated(true); 
   };
 
   const handleLogout = () => {
@@ -66,6 +65,7 @@ function App() {
               <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
               <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
               <Route path='/about' component={About} />
+              <Route path='/test' component={Test} />
               <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
           </Switch>
       </div>
