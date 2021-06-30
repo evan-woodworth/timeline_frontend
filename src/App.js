@@ -15,6 +15,7 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
+import TimelineContainer from './components/TimelineContainer';
 import Test from './components/Test';
 
 // PRIVATE ROUTE COMPONENTS
@@ -65,6 +66,7 @@ function App() {
               <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
               <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
               <Route path='/about' component={About} />
+              <Route path='/timelines' component={TimelineContainer} />
               <Route path='/test' component={Test} />
               <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
           </Switch>
