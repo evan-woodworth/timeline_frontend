@@ -17,11 +17,12 @@ const MyTimelines = () => {
     })
   }, [])
 
-console.log(timelines.length)
+// Required variable for counting amount of timelines
+const numTimeslines = timelines.length
 
 const allTimelines = timelines.map((timeline,index)=>{
   return (
-    <li key={index}>{timeline.title}</li> )
+    <li key={index}>{timeline.title} - Entries: {numTimeslines} </li> )
 }
   )
 
