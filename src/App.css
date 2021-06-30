@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+html {
+  position: relative;
+  min-height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 35px; /* Set the fixed height of the footer here */
+  line-height: 35px; /* Vertically center the text there */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* VARIABLES */
+
+:root {
+  --clr-timeline-active: rgb(180, 53, 3);
+  --clr-entry-active-back: rgb(180, 53, 3);
+  --clr-entry-active-text: #fff;
+  --clr-timeline-inactive: #aaa;
+  --clr-entry-inactive-back: #ddd;
+  --clr-entry-inactive-text: #333;
 }
 
-.App-link {
-  color: #61dafb;
+.timeline {
+  margin: 50px 60px;
+  height: 4px;
+  background-color: var(--clr-timeline-inactive);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timeline-current-point {
+  width: 33%;
+  height: 100%;
+  background-color: var(--clr-timeline-active);
+}
+
+.timeline-entries {
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: -12px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.timeline-entry-point {
+	position: relative;
+}
+/* ::before psuedo class used to make DOM shorter */
+.timeline-entry-point::before {
+	content: '';
+	width: 20px;
+	height: 20px;
+	background-color: var(--clr-timeline-inactive);
+	display: block;
+	border-radius: 100%;
+}
+
+.timeline-entry {
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--clr-entry-inactive-back);
+	width: 100px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	text-align: center;
+  color: var(--clr-entry-inactive-text);
+}
+.timeline-entry::before {
+	content: '';
+	width: 10px;
+	height: 10px;
+	background-color: var(--clr-entry-inactive-back);
+	display: block;
+	position: absolute;
+	top: -8px;
+	margin-left: -2px;
+	left: 50%;
+	transform: rotate(-45deg) translateX(-50%);
+}
+
+.timeline-entry-point.active::before {
+	background-color: var(--clr-timeline-active);
+}
+
+.timeline-entry-point.active .timeline-entry {
+	color: var(--clr-entry-active-text);
+	background-color: var(--clr-timeline-active);
+}
+
+.timeline-entry-point.active .timeline-entry::before {
+	background-color: var(--clr-timeline-active);
 }
