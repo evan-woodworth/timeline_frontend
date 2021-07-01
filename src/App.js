@@ -18,6 +18,7 @@ import About from './components/About';
 import NewTimeline from './components/NewTimeline'
 import TimelineContainer from './components/TimelineContainer';
 import Test from './components/Test';
+import Entry from './components/Entry'
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
@@ -70,6 +71,7 @@ function App() {
               <Route path='/about' component={About} />
               <Route path='/timelines' component={TimelineContainer} />
               <Route path='/test' component={Test} />
+              <Route path='/entry/:id' render={(props) => <Entry {...props} />} />
               <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
           </Switch>
       </div>
