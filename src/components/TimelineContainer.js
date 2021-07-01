@@ -34,7 +34,9 @@ export default function TimelineContainer(props) {
 
     const splitDateTime = (datetime) => {
         let datetimeArray = datetime.split("T");
-        return {'date':datetimeArray[0], 'time':datetimeArray[1]}
+        let dateArray = datetimeArray[0].split('-');
+        let daySync = parseInt(dateArray[0])*(30*(parseInt(dateArray[1])-1) + parseInt(dateArray[2]));
+        return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
     }
 
     const getTimelineData = async (timelineId) => {
@@ -62,8 +64,10 @@ export default function TimelineContainer(props) {
         }
         
         setTimelines(timelineArray);
-        let start = timelineArray[0][0].datetime;
-        let end = timelineArray[0][timelineArray[0].length-1].datetime
+        let start = splitDateTime(timelineArray[0][0].datetime);
+
+        let end = splitDateTime(timelineArray[0][timelineArray[0].length-1].datetime);
+
         timelineArray.forEach(timeline => {
             if (timeline[0].datetime < start) start = timeline[0].datetime;
             if (timeline[timeline.length-1].datetime > end) end = timeline[0].datetime;
