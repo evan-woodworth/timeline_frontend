@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from 'react'
-import ReactDOM from 'react-dom'
 
 export default function TimelineShow(props) {
     // const { entries, frame } = props;
@@ -39,5 +38,3 @@ export default function TimelineShow(props) {
         </div>
     )
 }
-
-ReactDOM.render(<TimelineShow />, document.getElementById('root'))

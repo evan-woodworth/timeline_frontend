@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
