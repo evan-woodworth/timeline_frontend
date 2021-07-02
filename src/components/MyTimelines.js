@@ -28,8 +28,8 @@ export default function MyTimelines(props) {
           <div className="card card-body">
           <Link to={{
             pathname:'/timelines',
-            timelineId: timeline.id
-          }} key={idx}>{timeline.title} </Link>
+            timeline: timeline
+          }} key={idx}> {timeline.title} </Link>
           </div>
         </div>
     ))
