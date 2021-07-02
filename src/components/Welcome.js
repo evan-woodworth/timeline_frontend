@@ -28,9 +28,9 @@ const Welcome = (props) => {
       <header /> 
         <div>
           <div className="header-tagline__container">
-            <h1 style={{fontWeight:"700", marginBottom:"3px"}}>Make learning fun </h1>
+            <h1 style={{fontWeight:"700", marginBottom:"5px"}}>Make learning fun </h1>
             <p className="h5">Create easy to read timelines of your favorite subjects</p>
-            <Link to="/newtimeline"><button className="btn btn-primary">Make a Timeline</button></Link>
+            <Link to="/newtimeline"><button className="btn btn-primary mt-1">Make a Timeline</button></Link>
           </div>
 
           <div>
