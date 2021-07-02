@@ -12,14 +12,14 @@ export default function MyTimelines(props) {
 
     const getUserTimelines = async (userId) => {
         try {
-            const userTimelineResponse = axios.get(`${REACT_APP_SERVER_URL}/api/users/${userId}/`, payload)
+            const userTimelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/users/${userId}/`, payload)
             console.log(userTimelineResponse)
             const theTimelines = userTimelineResponse.data.timelines;
             console.log(userTimelineResponse)
             return theTimelines;
         } catch (error) {
             console.log("failed to get user's timeline data", error)
-            return [];
+            return [{id:"fail",title:"fail"}];
         }
     }
 
@@ -27,7 +27,7 @@ export default function MyTimelines(props) {
         <Link to={{
             pathname:'/timelines',
             timelineId: timeline.id
-        }}> {timeline.title} </Link>
+        }} key={idx}> {timeline.title} </Link>
     ))
 
     useEffect(async ()=>{

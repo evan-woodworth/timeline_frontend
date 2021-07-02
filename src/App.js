@@ -154,7 +154,8 @@ function App() {
                 <Route path='/about' component={About} />
                 {/* <PrivateRoute path='/mytimelines' render={(props)=><MyTimelines {...props} user={currentUser} />} /> */}
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
-                <Route path='/timelines' render={(props)=><TimelineContainer {...props} user={currentUser} />} />
+                {/* <PrivateRoute path='/timelines' component={TimelineContainer} {...props} user={currentUser} /> */}
+                <PrivateRoute path='/timelines' component={TimelineContainer} render={(props)=><TimelineContainer {...props} user={currentUser} />} />
                 <Route path='/test' render={(props) => <Test {...props} user={currentUser} entries={entries} title={'Timeline'} />} />
                 <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
             </Switch>
