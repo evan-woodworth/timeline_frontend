@@ -12,7 +12,7 @@ export default function MyTimelines(props) {
 
     const getUserTimelines = async (userId) => {
         try {
-            const userTimelineResponse = axios.get(`${REACT_APP_SERVER_URL}/api/users/${userId}/`, payload)
+            const userTimelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/users/${userId}/`, payload)
             console.log(userTimelineResponse)
             const theTimelines = userTimelineResponse.data.timelines;
             console.log(userTimelineResponse)
@@ -26,8 +26,8 @@ export default function MyTimelines(props) {
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
         <Link to={{
             pathname:'/timelines',
-            timelineId: timeline.id
-        }}> {timeline.title} </Link>
+            timeline: timeline
+        }} key={idx}> {timeline.title} </Link>
     ))
 
     useEffect(async ()=>{

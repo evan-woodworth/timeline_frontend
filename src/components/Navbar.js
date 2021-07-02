@@ -11,7 +11,7 @@ const Navbar = (props) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsExample07">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item"><a href="/" alt="Explore" className="nav-link">Explore</a></li>
+                        <li className="nav-item"><NavLink className="nav-link"  to="/">Explore</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link"  to="/about">About</NavLink></li>
                         <li className="nav-item"><a className="nav-link" href="http://localhost:8000/api/">API</a></li>
                     </ul>
@@ -19,6 +19,7 @@ const Navbar = (props) => {
                         props.isAuth ?
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item"><NavLink className="nav-link"  to="/mytimelines">My Timelines</NavLink></li>
+                            <li className="nav-item"><NavLink className="nav-link"  to="/newtimeline">Create Timeline</NavLink></li>
                             <li className="nav-item"><NavLink className="nav-link"  to="/profile">Profile</NavLink></li>
                             <li className="nav-item"><span onClick={props.handleLogout} className="nav-link logout-link" style={{cursor:"pointer"}}>Logout</span></li>
                         </ul>
