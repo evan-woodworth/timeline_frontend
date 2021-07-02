@@ -24,10 +24,14 @@ export default function MyTimelines(props) {
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-        <Link to={{
+        <div className="col" >
+          <div className="card card-body">
+          <Link to={{
             pathname:'/timelines',
             timeline: timeline
-        }} key={idx}> {timeline.title} </Link>
+          }} key={idx}> {timeline.title} </Link>
+          </div>
+        </div>
     ))
 
     useEffect(async ()=>{
@@ -43,8 +47,10 @@ export default function MyTimelines(props) {
         return (<p>...Loading</p>)
     }
     return (
-        <div>
-            {displayUserTimelines}
+        <div className="container">
+          <h2>My Timelines:</h2>
+          <div className="row text-center justify-content-around" style={{}}>{displayUserTimelines}</div>
+            
         </div>
     )
 }

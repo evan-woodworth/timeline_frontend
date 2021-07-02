@@ -18,6 +18,7 @@ import About from './components/About';
 import NewTimeline from './components/NewTimeline'
 import TimelineContainer from './components/TimelineContainer';
 import Test from './components/Test';
+import ProfileTimelines from './components/ProfileTimelines'
 import MyTimelines from './components/MyTimelines';
 
 const entries = [
@@ -148,15 +149,17 @@ function App() {
         <div className="container mt-5">
             <Switch>
                 <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
-                <Route path='/newtimeline' component={NewTimeline} />
                 <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
                 <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
                 <Route path='/about' component={About} />
+                <Route path='/timelines' component={TimelineContainer} />
+                <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} />
                 {/* <PrivateRoute path='/mytimelines' render={(props)=><MyTimelines {...props} user={currentUser} />} /> */}
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
                 {/* <PrivateRoute path='/timelines' component={TimelineContainer} {...props} user={currentUser} /> */}
                 <PrivateRoute path='/timelines' component={TimelineContainer} render={(props)=><TimelineContainer {...props} user={currentUser} />} />
                 <Route path='/test' render={(props) => <Test {...props} user={currentUser} entries={entries} title={'Timeline'} />} />
+                <PrivateRoute path='/newtimeline' component={NewTimeline} render={(props)=><NewTimeline {...props} user={currentUser} /> } />
                 <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
             </Switch>
         </div>
