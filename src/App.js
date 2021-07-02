@@ -71,7 +71,7 @@ function App() {
                 <PrivateRoute path='/newtimeline' component={NewTimeline} user={currentUser} />
                 <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} />
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
-                <PrivateRoute path='/timelines' component={TimelineContainer} render={(props)=><TimelineContainer {...props} user={currentUser} />} />
+                <PrivateRoute path='/timelines' component={TimelineContainer} user={currentUser} />
                 <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
             </Switch>
         </div>

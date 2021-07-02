@@ -25,12 +25,12 @@ export default function MyTimelines(props) {
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
         <div className="col" >
-          <div className="card card-body">
-          <Link to={{
-            pathname:'/timelines',
-            timeline: timeline
-          }} key={idx}> {timeline.title} </Link>
-          </div>
+            <div className="card card-body">
+            <Link to={{
+                pathname:'/timelines',
+                timeline: timeline
+            }} key={idx}> {timeline.title} </Link>
+            </div>
         </div>
     ))
 
@@ -48,9 +48,8 @@ export default function MyTimelines(props) {
     }
     return (
         <div className="container">
-          <h2>My Timelines:</h2>
-          <div className="row text-center justify-content-around" style={{}}>{displayUserTimelines}</div>
-            
+            <h2>My Timelines:</h2>
+            <div className="row text-center justify-content-around" style={{}}>{displayUserTimelines}</div>
         </div>
     )
 }
