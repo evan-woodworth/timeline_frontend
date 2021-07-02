@@ -6,7 +6,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export default function TimelineContainer(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
-    const { timelineId } = props.location
+    const timelineId = props.location.timeline.id
     console.log('---------------------------props')
     console.log(props)
     const timelineIds = [timelineId] 
@@ -68,13 +68,20 @@ export default function TimelineContainer(props) {
         }
         
         setTimelines(timelineArray);
-        let start = splitDateTime(timelineArray[0][0].datetime);
-        let end = splitDateTime(timelineArray[0][timelineArray[0].length-1].datetime);
+        console.log(timelineArray)
+        let start = 0;
+        let end = 1;
 
-        timelineArray.forEach(timeline => {
-            if (timeline[0].datetime < start.date) start = splitDateTime(timeline[0].datetime);
-            if (timeline[timeline.length-1].datetime > end.date) end = splitDateTime(timeline[timeline.length-1].datetime);
-        })
+        if (timelineArray[0].length) {
+            start = splitDateTime(timelineArray[0][0].datetime);
+            end = splitDateTime(timelineArray[0][timelineArray[0].length-1].datetime);
+    
+            timelineArray.forEach(timeline => {
+                if (timeline[0].datetime < start.date) start = splitDateTime(timeline[0].datetime);
+                if (timeline[timeline.length-1].datetime > end.date) end = splitDateTime(timeline[timeline.length-1].datetime);
+            })
+        }
+
         setFrame([start, end]);
         setBigFrame([start, end]);
         setFinishedLoading(true);
@@ -90,7 +97,7 @@ export default function TimelineContainer(props) {
             <div className="timeline-details"></div>
             <div className="timeline-display">
                 {timelines.map((timeline, idx) => (
-                    <TimelineShow {...props} key={idx} user={props.user} title={timeline[0].timeline} entries={timeline} frame={frame} />
+                    <TimelineShow {...props} key={idx} user={props.user} title={props.location.timeline.title} entries={timeline} frame={frame} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>

@@ -26,7 +26,7 @@ export default function MyTimelines(props) {
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
         <Link to={{
             pathname:'/timelines',
-            timelineId: timeline.id
+            timeline: timeline
         }} key={idx}> {timeline.title} </Link>
     ))
 

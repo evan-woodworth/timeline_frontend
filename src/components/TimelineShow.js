@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import DetailShow from './DetailShow';
 
 const splitDateTime = (datetime) => {
     let datetimeArray = datetime.split("T");
@@ -76,11 +77,24 @@ const parseEntries = (entryList, frame) => {
 export default function Test(props) {
     const {  title, frame } = props;
     const [displayEntries, setDisplayEntries] = useState([])
+    const [detailCardOpen, setDetailCardOpen] = useState(false)
+    const [currentEntry, setcurrentEntry] = useState({})
     const [finishedLoading, setFinishedLoading] = useState(false);
 
+    const showDetails = (e,entry) => {
+        setcurrentEntry(entry);
+        setDetailCardOpen(true);
+    }
+
+    const hideDetails = (e) => {
+        setDetailCardOpen(false);
+    }
+
     useEffect(()=>{
-        const parsedEntries = parseEntries(props.entries, frame);
-        setDisplayEntries(parsedEntries);
+        if (props.entries.length) {
+            const parsedEntries = parseEntries(props.entries, frame);
+            setDisplayEntries(parsedEntries);
+        }
         setFinishedLoading(true);
     }, [])
 
@@ -89,26 +103,38 @@ export default function Test(props) {
     }
     return (
         <div className="TimelineShow">
+            { detailCardOpen ? (
+                <div style={{position: 'absolute', zIndex: '99'}}>
+                    <DetailShow entry={currentEntry} hideDetails={hideDetails} />
+                </div>
+            ) : (
+                <></>
+            ) }
             <div className="timeline-title">{title}</div>
             <div className="timeline">
                 <div className="timeline-current-point"></div>
                 <div className="timeline-entries">
-                    { displayEntries.map((entry,i) => (
-                        <div key={i} className="timeline-entry-point" style={{'--line-position': entry.linePosition+"%"}}>
-                            <div className={"timeline-entry-" + (entry.position)}>
-                                <div className="timeline-entry-card">
-                                <h5 className="timeline-entry-date">{entry.date}</h5>
-                                    {entry.image.length ? (
-                                        <img src={entry.image} alt={entry.title}/>
-                                    ):(
-                                        <></>
-                                    )}
-                                    <h4 className="timeline-entry-title">{entry.title}</h4>
-                                    <div className="timeline-entry-summary">{entry.summary}</div>
+                    { displayEntries.length ? (
+                        displayEntries.map((entry,i) => (
+                            <div key={i} className="timeline-entry-point" style={{'--line-position': entry.linePosition+"%"}}>
+                                <div className={"timeline-entry-" + (entry.position)}>
+                                    <div className="timeline-entry-card" onClick={e=>{showDetails(e, entry)}}>
+                                        <h5 className="timeline-entry-date">{entry.date}</h5>
+                                        {entry.image.length ? (
+                                            <img src={entry.image} alt={entry.title}/>
+                                        ):(
+                                            <></>
+                                        )}
+                                        <h4 className="timeline-entry-title">{entry.title}</h4>
+                                        <div className="timeline-entry-summary">{entry.summary}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <></>
+                    ) }
+
                 </div>
             </div>
         </div>
