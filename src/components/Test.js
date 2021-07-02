@@ -74,11 +74,7 @@ const parseEntries = (entryList, frame) => {
 }
 
 export default function Test(props) {
-    const {title} = props;
-    const frame = [
-        {date:"2021-01-01", time:"14:11:00-05:00", daySync:737666},
-        {date:"2021-07-01", time:"14:11:00-05:00", daySync:737846}
-    ]
+    const {  title, frame } = props;
     const [displayEntries, setDisplayEntries] = useState([])
     const [finishedLoading, setFinishedLoading] = useState(false);
 
