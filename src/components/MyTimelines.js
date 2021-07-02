@@ -20,11 +20,10 @@ const MyTimelines = () => {
   }, [])
 
 const allTimelines = timelines.map((timeline,index)=>{
-  // console.log(timelines[index].entries.length)
   let entriesCount = timelines[index].entries.length
   return (
     <>
-    <Link to={'entry/'+timeline.id}><li key={index}>{timeline.title} - Entries: {entriesCount} </li></Link>
+    <Link to={'profiletimelines/'+timeline.id}><li key={index}>{timeline.title} - Entries: {entriesCount} </li></Link>
     </>
     )
 }
@@ -35,7 +34,7 @@ return (
       <h2>Your Current Timelines:</h2>
       <div className="container">
         <div className="row">
-        <ul> {allTimelines} </ul>
+        <ul> {allTimelines.length ? allTimelines : <li>No Timelines Found</li>} </ul>
         </div>
       </div>
     </div>
