@@ -6,7 +6,9 @@ const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken'
 
 export default function TimelineContainer(props) {
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
-    const { timelineId } = props
+    const { timelineId } = props.location
+    console.log('---------------------------props')
+    console.log(props)
     const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);
     const [frame, setFrame] = useState([]);
@@ -42,6 +44,7 @@ export default function TimelineContainer(props) {
 
     const getTimelineData = async (timelineId) => {
         try {
+            console.log(timelineId)
             const timelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/timelines/${timelineId}`, payload);
             let entryArray = sortEntries(timelineResponse.data.entries);
             entryArray.forEach(entry => {
