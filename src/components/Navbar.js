@@ -18,6 +18,7 @@ const Navbar = (props) => {
                     {
                         props.isAuth ?
                         <ul className="navbar-nav ml-auto">
+                            <li className="nav-item"><NavLink className="nav-link"  to="/mytimelines">My Timelines</NavLink></li>
                             <li className="nav-item"><NavLink className="nav-link"  to="/profile">Profile</NavLink></li>
                             <li className="nav-item"><span onClick={props.handleLogout} className="nav-link logout-link" style={{cursor:"pointer"}}>Logout</span></li>
                         </ul>

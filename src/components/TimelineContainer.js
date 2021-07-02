@@ -2,10 +2,12 @@ import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
 
 export default function TimelineContainer(props) {
-    // const { timelineIds } = props
-    const timelineIds = ['1'] // hard coded for test purposes
+    // const { timelineIds } = props // for stretch-goal of showing multiple timelines
+    const { timelineId } = props
+    const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);
     const [frame, setFrame] = useState([]);
     const [bigFrame, setBigFrame] = useState([]);
@@ -27,7 +29,6 @@ export default function TimelineContainer(props) {
                     right.push(entryArray[i])
                 }
             }
-
             return (returnArray.concat(sortEntries(left), pivot, sortEntries(right)));
         }
     }
@@ -41,7 +42,7 @@ export default function TimelineContainer(props) {
 
     const getTimelineData = async (timelineId) => {
         try {
-            const timelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/timelines/${timelineId}`);
+            const timelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/timelines/${timelineId}`, payload);
             let entryArray = sortEntries(timelineResponse.data.entries);
             entryArray.forEach(entry => {
                 const { date, time } = splitDateTime(entry.datetime);
