@@ -2,9 +2,9 @@ import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
 
 export default function TimelineContainer(props) {
+    const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
     const { timelineId } = props.location
     console.log('---------------------------props')
