@@ -17,91 +17,8 @@ import Footer from './components/Footer';
 import About from './components/About';
 import NewTimeline from './components/NewTimeline'
 import TimelineContainer from './components/TimelineContainer';
-import Test from './components/Test';
+import ProfileTimelines from './components/ProfileTimelines'
 import MyTimelines from './components/MyTimelines';
-
-const entries = [
-    {
-        title: 'Entry 1a',
-        "timeline": "Test Timeline",
-        summary: 'Some Stuff',
-        datetime: "2021-01-01T14:11:00-05:00",
-        image: "https://i.imgur.com/60IQydY.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 1b',
-        "timeline": "Test Timeline",
-        summary: 'Some Stuff',
-        datetime: "2021-01-04T14:11:00-05:00",
-        image: "https://i.imgur.com/60IQydY.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 1c',
-        "timeline": "Test Timeline",
-        summary: 'Some Stuff',
-        datetime: "2021-01-05T14:11:00-05:00",
-        image: "https://i.imgur.com/60IQydY.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 1d',
-        "timeline": "Test Timeline",
-        summary: 'Some Stuff',
-        datetime: "2021-01-10T14:11:00-05:00",
-        image: "https://i.imgur.com/60IQydY.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 2',
-        "timeline": "Test Timeline",
-        summary: 'Some Other Stuff',
-        datetime: "2021-03-01T14:11:00-05:00",
-        image: "",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 3',
-        "timeline": "Test Timeline",
-        summary: 'Some More Stuff',
-        datetime: "2021-04-01T14:11:00-05:00",
-        image: "https://i.imgur.com/KXcLOHo.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 4',
-        "timeline": "Test Timeline",
-        summary: 'Some More Stuff',
-        datetime: "2021-05-15T14:11:00-05:00",
-        image: "https://i.imgur.com/KXcLOHo.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 5',
-        "timeline": "Test Timeline",
-        summary: 'Some More Stuff',
-        datetime: "2021-06-15T14:11:00-05:00",
-        image: "https://i.imgur.com/KXcLOHo.jpeg",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 6',
-        "timeline": "Test Timeline",
-        summary: 'Some Sort of Stuff',
-        datetime: "2021-06-20T14:11:00-05:00",
-        image: "",
-        details: "blah blah blah"
-    },
-    {
-        title: 'Entry 7',
-        "timeline": "Test Timeline",
-        summary: 'Some Sort of Stuff',
-        datetime: "2021-07-01T14:11:00-05:00",
-        image: "",
-        details: "blah blah blah"
-    }
-]
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
@@ -151,10 +68,10 @@ function App() {
                 <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
                 <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
                 <Route path='/about' component={About} />
-                <Route path='/timelines' render={(props)=><TimelineContainer {...props} user={currentUser} />} />
-                <Route path='/test' render={(props) => <Test {...props} user={currentUser} entries={entries} title={'Timeline'} />} />
                 <PrivateRoute path='/newtimeline' component={NewTimeline} user={currentUser} />
+                <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} />
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
+                <PrivateRoute path='/timelines' component={TimelineContainer} render={(props)=><TimelineContainer {...props} user={currentUser} />} />
                 <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
             </Switch>
         </div>
