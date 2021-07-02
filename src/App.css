@@ -21,12 +21,14 @@ body {
 	--clr-timeline: #aaa;
 	--clr-entry-back: #ddd;
 	--clr-entry-text: #333;
+	--line-position: 0%;
 }
 
 .timeline {
 	margin: 400px 60px;
 	height: 4px;
 	background-color: var(--clr-timeline);
+	position: relative;
 }
 .timeline-current-point {
 	width: 33%;
@@ -39,7 +41,8 @@ body {
 }
 
 .timeline-entry-point {
-	position: relative;
+	position: absolute;
+	left: var(--line-position);
 }
 /* ::before psuedo class used to make DOM shorter */
 .timeline-entry-point::before {

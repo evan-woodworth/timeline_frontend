@@ -1,5 +1,4 @@
 import React, { useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -9,6 +8,7 @@ export default function TimelineContainer(props) {
     const timelineIds = ['1'] // hard coded for test purposes
     const [timelines, setTimelines] = useState([]);
     const [frame, setFrame] = useState([]);
+    const [bigFrame, setBigFrame] = useState([]);
     const [finishedLoading, setFinishedLoading] = useState(false);
 
     const sortEntries = (entryArray) => {
@@ -34,7 +34,9 @@ export default function TimelineContainer(props) {
 
     const splitDateTime = (datetime) => {
         let datetimeArray = datetime.split("T");
-        return {'date':datetimeArray[0], 'time':datetimeArray[1]}
+        let dateArray = datetimeArray[0].split('-');
+        let daySync = parseInt(dateArray[0])*365+(30*(parseInt(dateArray[1])-1) + parseInt(dateArray[2]));
+        return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
     }
 
     const getTimelineData = async (timelineId) => {
@@ -62,16 +64,18 @@ export default function TimelineContainer(props) {
         }
         
         setTimelines(timelineArray);
-        let start = timelineArray[0][0].datetime;
-        let end = timelineArray[0][timelineArray[0].length-1].datetime
+        let start = splitDateTime(timelineArray[0][0].datetime);
+        let end = splitDateTime(timelineArray[0][timelineArray[0].length-1].datetime);
+
         timelineArray.forEach(timeline => {
-            if (timeline[0].datetime < start) start = timeline[0].datetime;
-            if (timeline[timeline.length-1].datetime > end) end = timeline[0].datetime;
+            if (timeline[0].datetime < start.date) start = splitDateTime(timeline[0].datetime);
+            if (timeline[timeline.length-1].datetime > end.date) end = splitDateTime(timeline[timeline.length-1].datetime);
         })
         setFrame([start, end]);
-        console.log(timelines);
-        console.log(frame);
+        setBigFrame([start, end]);
         setFinishedLoading(true);
+        console.log(timelineArray);
+        console.log([start, end]);
     }, [])
 
     if (!finishedLoading) {
@@ -82,7 +86,7 @@ export default function TimelineContainer(props) {
             <div className="timeline-details"></div>
             <div className="timeline-display">
                 {timelines.map((timeline, idx) => (
-                    <TimelineShow key={idx} entries={timeline} frame={frame} />
+                    <TimelineShow {...props} key={idx} user={props.user} title={timeline[0].timeline} entries={timeline} frame={frame} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>
