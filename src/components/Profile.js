@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import MyTimelines from './MyTimelines'
 
 const Profile = (props) => {
-    console.log(props)
     const {handleLogout} = props;
     const {user_id, username, email, exp} = props.user;
     const expirationTime = new Date(exp * 1000);
@@ -21,8 +19,6 @@ const Profile = (props) => {
         <p><strong>Username:</strong> { username }</p> 
         <p><strong>Email:</strong> { email }</p> 
         <p><strong>ID:</strong> { user_id }</p>
-        <hr />
-        {/* <MyTimelines /> */}
     </div>) 
     : <h4>...Loading...</h4>
 

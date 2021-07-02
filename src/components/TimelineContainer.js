@@ -1,14 +1,14 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
+import NewEntry from './NewEntry';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function TimelineContainer(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
     const timelineId = props.location.timeline.id
-    console.log('---------------------------props')
-    console.log(props)
+
     const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);
     const [frame, setFrame] = useState([]);
@@ -94,11 +94,16 @@ export default function TimelineContainer(props) {
     }
     return (
         <div className="timeline-container">
-            <div className="timeline-details"></div>
+            <div className="timeline-details">
+                <></>
+            </div>
             <div className="timeline-display">
                 {timelines.map((timeline, idx) => (
                     <TimelineShow {...props} key={idx} user={props.user} title={props.location.timeline.title} entries={timeline} frame={frame} />
                 ))}
+            </div>
+            <div>
+                <NewEntry user={props.user} timeline={props.location.timeline} props={props}/>
             </div>
             <div className="timeline-controls" ></div>
         </div>
