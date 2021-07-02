@@ -22,7 +22,7 @@ const Profile = (props) => {
         <p><strong>Email:</strong> { email }</p> 
         <p><strong>ID:</strong> { user_id }</p>
         <hr />
-        <MyTimelines />
+        {/* <MyTimelines /> */}
     </div>) 
     : <h4>...Loading...</h4>
 

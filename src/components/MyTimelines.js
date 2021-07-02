@@ -1,44 +1,50 @@
-import React, {useState, useEffect}  from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
-const MyTimelines = () => {
-  const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
-  const [timelines, setTimelines] = useState([])
-  useEffect(()=>{
-  const url = `${REACT_APP_SERVER_URL}/api/timelines`
-    axios.get(url, payload)
-    .then((response)=>{
-      console.log(response.data)
-      setTimelines(response.data)
-    })
-    .catch(( err) =>{
-      console.log(err)
-    })
-  }, [])
+export default function MyTimelines(props) {
+    const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
+    const { user } = props;
+    const [userTimelines, setUserTimelines] = useState([]);
+    const [finishedLoading, setFinishedLoading] = useState(false);
 
-const allTimelines = timelines.map((timeline,index)=>{
-  let entriesCount = timelines[index].entries.length
-  return (
-    <>
-    <Link to={'profiletimelines/'+timeline.id}><li key={index}>{timeline.title} - Entries: {entriesCount} </li></Link>
-    </>
+    const getUserTimelines = async (userId) => {
+        try {
+            const userTimelineResponse = axios.get(`${REACT_APP_SERVER_URL}/api/users/${userId}/`, payload)
+            console.log(userTimelineResponse)
+            const theTimelines = userTimelineResponse.data.timelines;
+            console.log(userTimelineResponse)
+            return theTimelines;
+        } catch (error) {
+            console.log("failed to get user's timeline data", error)
+            return [];
+        }
+    }
+
+    const displayUserTimelines = userTimelines.map((timeline, idx)=>(
+        <Link to={{
+            pathname:'/timelines',
+            timelineId: timeline.id
+        }}> {timeline.title} </Link>
+    ))
+
+    useEffect(async ()=>{
+        console.log('-----------------------------------------------------------')
+        const theTimelines = await getUserTimelines(user.user_id);
+        setUserTimelines(theTimelines);
+        console.log(theTimelines);
+        console.log(user)
+        setFinishedLoading(true);
+    },[])
+
+    if (!finishedLoading) {
+        return (<p>...Loading</p>)
+    }
+    return (
+        <div>
+            {displayUserTimelines}
+        </div>
     )
 }
-  )
-
-return (
-    <div>
-      <h2>Your Current Timelines:</h2>
-      <div className="container">
-        <div className="row">
-        <ul> {allTimelines.length ? allTimelines : <li>No Timelines Found</li>} </ul>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default MyTimelines
