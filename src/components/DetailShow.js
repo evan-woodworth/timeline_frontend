@@ -1,7 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react';
+import axios from 'axios';
+import DetailUpdate from './DetailUpdate';
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function DetailShow(props) {
+    const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     const { entry } = props;
+    const [updatePage, setUpdatePage] = useState(false);
+
+    const handleUpdate = () => {
+        setUpdatePage(!updatePage)
+    }
+
+    const handleDelete = () => {
+        // axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`, payload)
+        axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`)
+        .then(response => {
+            console.log(response.data);
+            alert(`Entry ${entry.title} deleted`);
+        }).catch(error => {
+            console.log('------------ ENTRY DELETE ERROR ------------');
+            console.log(error);
+            alert('Delete unsuccessful. Please try again.');
+        })
+    };
 
     return (
         <div className="timeline-entry-details">
@@ -21,6 +43,13 @@ export default function DetailShow(props) {
             ) : (
                 <p>{entry.description}</p>
             ) }
+            <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
+            <div className="btn btn-danger" onClick={handleDelete}> Delete </div>
+            { (updatePage === true) ? (
+                <div>
+                    <DetailUpdate entry={props.entry}/>
+                </div>
+            ) : <></> }
         </div>
     )
 }

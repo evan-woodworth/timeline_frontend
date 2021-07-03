@@ -5,21 +5,16 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 
 const NewEntry = (props) => {
-    console.log(props);
-    // const [timeline, setTimeline] = useState(`${props.}`);
-    // const [timeline, setTimeline] = useState(`${props.timeline.title}`);
+    const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     const user = props.user.user_id
     const timeline = props.timeline.title
+    const timelines = props.timeline
     const [title, setTitle] = useState('');
     const [datetime, setDatetime] = useState('');
     const [summary, setSummary] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
-    // const [rerender, setRerender] = useState(false);
-
-    // const handleTimeline = (e) => {
-    //     setTimeline(e.target.value);
-    // }
+    const [rerender, setRerender] = useState(false);
 
     const handleTitle = (e) => {
         setTitle(e.target.value);
@@ -54,25 +49,26 @@ const NewEntry = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
+        // axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data, payload)
         axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data)
         .then(response => {
             console.log(response.data);
             alert('Entry successfully created');
+            // setRerender(true);
         }).catch(error => {
             console.log(error);
             alert('Unsuccessful entry creation');
         });
     }
 
-    // if (rerender === true) return <Redirect to='/timelines' />
+    if (rerender === true) return <Redirect to={{
+        pathname:'/timelines', 
+        state: {timeline: timelines}
+        }}/>
 
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <select onChange={handleTimeline}>
-                <option value="Batman">Batman</option>
-                <option value="Marvel">Marvel</option>
-            </select> */}
             <label htmlFor="title">Title</label>
             <input type="text" name="title" value={title} onChange={handleTitle}/>
             <br/>
