@@ -8,15 +8,21 @@ const splitDateTime = (datetime) => {
     return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
 }
 
-const wrangleEntries = (entryList, place) => {
+const wrangleEntries = ( entryList, cardWidth, width ) => {
     let wrangledEntries = [entryList[0]]
+    // --entry.linePosition-- represents an entry's position on the timeline, by percentage of the whole.
+    // The goal here is to nest entries that are too close to each other.
+    // --cardWidth-- represents the pixel width of an entry, while
+    // --width-- represents the width of the available window.
+    // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
+    let wrangleWidth = Math.floor(100*(cardWidth/width))+1
     for (let i=0; i < entryList.length-1; i++) {
         let checkAgain = true;
         let nestingHappened = false;
         let newEntry = Object.create(entryList[i+1]);
         for ( let j = i+2; j<entryList.length && checkAgain; j++ ) {
             // if entry is too close to the entry on the left on the same side of timeline, nest it
-            if ( entryList[j].linePosition - entryList[i].linePosition <= 15 ) {
+            if ( entryList[j].linePosition - entryList[i].linePosition <= wrangleWidth ) {
                 nestingHappened = true;
                 // if entry to the left is already a nest, add to nest
                 // else, make a nest
@@ -52,7 +58,7 @@ const wrangleEntries = (entryList, place) => {
     return wrangledEntries;
 }
 
-const parseEntries = (entryList, frame) => {
+const parseEntries = (entryList, frame, cardWidth, width) => {
     let validEntries = [];
     for (let i=0; i<entryList.length; i++) {
         const { date, time, daySync } = splitDateTime(entryList[i].datetime);
@@ -66,7 +72,7 @@ const parseEntries = (entryList, frame) => {
         }
     }
     // combine close entries
-    let wrangledEntries = wrangleEntries(validEntries, 0);
+    let wrangledEntries = wrangleEntries(validEntries, cardWidth, width);
     // assign sides of timeline
     for (let i=0; i<wrangledEntries.length; i++) {
         wrangledEntries[i]['position'] = ( i%2 ? 'bottom' : 'top' );
@@ -76,9 +82,11 @@ const parseEntries = (entryList, frame) => {
 
 export default function Test(props) {
     const {  title, frame } = props;
-    const [displayEntries, setDisplayEntries] = useState([])
-    const [detailCardOpen, setDetailCardOpen] = useState(false)
-    const [currentEntry, setcurrentEntry] = useState({})
+    const cardWidth = 150;
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth-96);
+    const [displayEntries, setDisplayEntries] = useState([]);
+    const [detailCardOpen, setDetailCardOpen] = useState(false);
+    const [currentEntry, setcurrentEntry] = useState({});
     const [finishedLoading, setFinishedLoading] = useState(false);
 
     const showDetails = (e,entry) => {
@@ -90,12 +98,24 @@ export default function Test(props) {
         setDetailCardOpen(false);
     }
 
+    const changeWidth = () => {
+        setScreenWidth(window.innerWidth-96);
+        if (props.entries.length) {
+            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96);
+            setDisplayEntries(parsedEntries);
+        }
+    }
+
     useEffect(()=>{
         if (props.entries.length) {
-            const parsedEntries = parseEntries(props.entries, frame);
+            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96);
             setDisplayEntries(parsedEntries);
         }
         setFinishedLoading(true);
+        window.addEventListener('resize', changeWidth);
+        return () => {
+            window.removeEventListener('resize', changeWidth);
+        };
     }, [])
 
     if (!finishedLoading) {
