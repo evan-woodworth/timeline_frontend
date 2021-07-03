@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div>
+        <div className="container">
           <div>
             <h2 className="mb-5" style={{fontWeight:"600"}}>About Jikangu</h2>
             <h4>What is Jikangu?</h4>
