@@ -24,14 +24,12 @@ export default function MyTimelines(props) {
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-        <>
-            <li className="list-group-item pl-0">
+            <li className="list-group-item pl-0" key={idx}>
             <Link to={{
                 pathname:'/timelines',
                 state: {timeline: timeline}
             }} className="timeline-links"> {timeline.title} </Link>
             </li>
-        </>
     ))
 
     useEffect(async ()=>{
