@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
+
 const NewTimeline = (props) => {
   const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
   const [title, setTitle] = useState('');
@@ -40,18 +41,22 @@ const NewTimeline = (props) => {
   }
 
   return (
-    <div>
+    <div className="container card card-body col-7">
+      <h2>Create a Timeline</h2>
       <form onSubmit={handleSubmit}>
-        <h1>New Timeline Page</h1>
-          <label htmlFor="title">Timeline Title</label>
-            <input type="text" name="title" value={title} onChange={handleTitle} />
-          <br/>
-          <label htmlFor="private">Private
-            <input type="checkbox" name="private" value={isPrivate} onChange={handleIsPrivate} />
-            <span className="slider round"></span>
+      <div className="form-group">
+        <label htmlFor="title" style={{fontWeight:"600"}}>Title</label>
+        <input className="form-control" type="text" name="title" value={title} maxLength="50" onChange={handleTitle} placeholder="Enter a Timeline Title (max length 50 chars)"/>
+      </div>
+      <div className="form-group">
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" name="private" value={isPrivate} onChange={handleIsPrivate} />
+          <label htmlFor="private" className="form-check-label" style={{fontWeight:"600"}}>Make Timeline Private?
           </label>
-          <br/>
-          <button type="submit" className="btn btn-primary">Next</button>
+        </div>
+        </div>
+        <button type="submit" className="btn btn-primary ">Submit</button>
+     
       </form>
     </div>
   )

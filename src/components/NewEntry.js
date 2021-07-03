@@ -68,24 +68,36 @@ const NewEntry = (props) => {
 
 
     return (
+      <div className="container col-5 card card-body" style={{fontWeight:"600"}}>
+      <h5 style={{fontWeight:"800"}}>Add new entry to this timeline</h5>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" value={title} onChange={handleTitle}/>
-            <br/>
-            <label htmlFor="summary">Summary</label>
-            <input type="text" name="summary" value={summary} onChange={handleSummary}/>
-            <br/>
-            <label htmlFor="description">Description</label>
-            <input type="text" name="description" value={description} onChange={handleDescription}/>
-            <br/>
-            <label htmlFor="datetime">Datetime</label>
-            <input type="date" name="datetime" value={datetime} onChange={handleDatetime}/>
-            <br/>
-            <label htmlFor="image">Image</label>
-            <input type="text" name="image" value={image} onChange={handleImage}/>
-            <br/>
+            {/* <select onChange={handleTimeline}>
+                <option value="Batman">Batman</option>
+                <option value="Marvel">Marvel</option>
+            </select> */}
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
+              <input className="form-control" type="text" name="title" value={title} onChange={handleTitle}placeholder="Enter a Timeline Title (max length 50 chars)" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="summary">Summary</label>
+              <input className="form-control" type="text" name="summary" value={summary} onChange={handleSummary} placeholder="Enter a summary (max length 100 chars)"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <textarea className="form-control" name="description" value={description} onChange={handleDescription}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="datetime">Datetime</label>
+              <input className="form-control" type="date" name="datetime" value={datetime} onChange={handleDatetime}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Image</label>
+              <input className="form-control" type="text" name="image" value={image} onChange={handleImage} placeholder="Enter an image URL"/>
+            </div>
             <button type="submit" className="btn btn-primary"> Submit </button>
         </form>
+        </div>
     )
 }
 
