@@ -7,9 +7,8 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export default function TimelineContainer(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
-    const timelineId = props.location.timeline.id
-    console.log(props)
-
+    const timeline = props.location.state.timeline
+    const timelineId = props.location.state.timeline.id;
     const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);
     const [frame, setFrame] = useState([]);
@@ -100,11 +99,11 @@ export default function TimelineContainer(props) {
             </div>
             <div className="timeline-display">
                 {timelines.map((timeline, idx) => (
-                    <TimelineShow {...props} key={idx} user={props.user} title={props.location.timeline.title} entries={timeline} frame={frame} />
+                    <TimelineShow {...props} key={idx} user={props.user} title={timeline.title} entries={timeline} frame={frame} />
                 ))}
             </div>
             <div>
-                <NewEntry user={props.user} timeline={props.location.timeline}/>
+                <NewEntry user={props.user} timeline={timeline}/>
             </div>
             <div className="timeline-controls" ></div>
         </div>

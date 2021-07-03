@@ -15,6 +15,7 @@ const NewEntry = (props) => {
     const [summary, setSummary] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
+    // const [rerender, setRerender] = useState(false);
 
     // const handleTimeline = (e) => {
     //     setTimeline(e.target.value);
@@ -56,13 +57,14 @@ const NewEntry = (props) => {
         axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data)
         .then(response => {
             console.log(response.data);
-            alert('Entry created');
+            alert('Entry successfully created');
         }).catch(error => {
             console.log(error);
             alert('Unsuccessful entry creation');
         });
     }
 
+    // if (rerender === true) return <Redirect to='/timelines' />
 
 
     return (
@@ -73,18 +75,19 @@ const NewEntry = (props) => {
             </select> */}
             <label htmlFor="title">Title</label>
             <input type="text" name="title" value={title} onChange={handleTitle}/>
-
+            <br/>
             <label htmlFor="summary">Summary</label>
             <input type="text" name="summary" value={summary} onChange={handleSummary}/>
-
+            <br/>
             <label htmlFor="description">Description</label>
             <input type="text" name="description" value={description} onChange={handleDescription}/>
-
+            <br/>
             <label htmlFor="datetime">Datetime</label>
             <input type="date" name="datetime" value={datetime} onChange={handleDatetime}/>
-
+            <br/>
             <label htmlFor="image">Image</label>
             <input type="text" name="image" value={image} onChange={handleImage}/>
+            <br/>
             <button type="submit" className="btn btn-primary"> Submit </button>
         </form>
     )

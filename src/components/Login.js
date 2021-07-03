@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
-import {Redirect, Router} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -56,7 +56,7 @@ const Login = (props) => {
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>
-            <div class="container text-center mt-3" >Don't have an account? <Link to="/signup">Sign up today!</Link></div>
+            <div className="container text-center mt-3" >Don't have an account? <Link to="/signup">Sign up today!</Link></div>
             </div>
         </div>
     )
