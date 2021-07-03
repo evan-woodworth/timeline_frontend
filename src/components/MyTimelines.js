@@ -33,6 +33,21 @@ export default function MyTimelines(props) {
             </li>
         </>
     ))
+  
+    const newTimelineButton = ()=>{
+      if (displayUserTimelines.length===0){
+        return(
+          <Link to="/newtimeline" >
+            <button className="btn btn-primary">Create a new Timeline</button>
+          </Link>
+        )
+      } else{
+        return;
+      }
+    }
+      
+    
+
 
     useEffect(async ()=>{
         console.log('-----------------------------------------------------------')
@@ -50,11 +65,12 @@ export default function MyTimelines(props) {
         <div className="container">
             <h2>My Timelines</h2>
             <p style={{fontWeight:"500"}}>{
-              displayUserTimelines.length === 0? "No Timelines Found" :  displayUserTimelines.length === 1 ? 
+              displayUserTimelines.length === 0? `No timelines found`:  displayUserTimelines.length === 1 ? 
               displayUserTimelines.length + " Timeline" : 
               displayUserTimelines.length + " Timelines"
               }
             </p>
+            {newTimelineButton()}
 
             <div className="col text-left">
               <ul className="list-group list-group-flush">

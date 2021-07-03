@@ -58,7 +58,7 @@ const Signup = (props) => {
         }
     }
 
-    if (redirect) return <Redirect to='/profile' />
+    if (redirect) return <Redirect to='/mytimelines' />
     
     return (
         <div className="row mt-4">
