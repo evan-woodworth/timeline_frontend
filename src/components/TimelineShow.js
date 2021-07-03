@@ -81,7 +81,7 @@ const parseEntries = (entryList, frame, cardWidth, width) => {
 }
 
 export default function Test(props) {
-    const {  title, frame } = props;
+    const { title, frame } = props;
     const cardWidth = 150;
     const [screenWidth, setScreenWidth] = useState(window.innerWidth-96);
     const [displayEntries, setDisplayEntries] = useState([]);

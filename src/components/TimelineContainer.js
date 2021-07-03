@@ -44,8 +44,8 @@ export default function TimelineContainer(props) {
 
     const getTimelineData = async (timelineId) => {
         try {
-            console.log(timelineId)
-            const timelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/timelines/${timelineId}`, payload);
+            // console.log(timelineId)
+            const timelineResponse = await axios.get(`${REACT_APP_SERVER_URL}/api/timelines/${timelineId}/`);
             let entryArray = sortEntries(timelineResponse.data.entries);
             entryArray.forEach(entry => {
                 const { date, time } = splitDateTime(entry.datetime);
@@ -68,7 +68,7 @@ export default function TimelineContainer(props) {
         }
         
         setTimelines(timelineArray);
-        console.log(timelineArray)
+        // console.log(timelineArray)
         let start = 0;
         let end = 1;
 
@@ -85,7 +85,7 @@ export default function TimelineContainer(props) {
         setFrame([start, end]);
         setBigFrame([start, end]);
         setFinishedLoading(true);
-        console.log(timelineArray);
+        // console.log(timelineArray);
         console.log([start, end]);
     }, [])
 

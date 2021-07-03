@@ -13,10 +13,10 @@ const NewTimeline = (props) => {
   };
 
   const handleIsPrivate = (e) => {
-    if (e.target.checked == true) {
+    if (e.target.checked === true) {
       setIsPrivate(true);
     }
-    if (e.target.checked == false) {
+    if (e.target.checked === false) {
       setIsPrivate(false);
     }
   }
@@ -29,7 +29,8 @@ const NewTimeline = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
+    // axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
+    axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data)
     .then(response => {
       console.log(response.data);
       alert('Timeline created');
