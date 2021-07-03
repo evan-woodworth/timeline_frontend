@@ -48,8 +48,13 @@ export default function MyTimelines(props) {
     }
     return (
         <div className="container">
-            <h2>My Timelines:</h2>
-            <p style={{fontWeight:"500"}}>{displayUserTimelines.length === 0? "<b>No Timelines Found</b>" :  displayUserTimelines.length + " Timelines"}</p>
+            <h2>My Timelines</h2>
+            <p style={{fontWeight:"500"}}>{
+              displayUserTimelines.length === 0? "No Timelines Found" :  displayUserTimelines.length === 1 ? 
+              displayUserTimelines.length + " Timeline" : 
+              displayUserTimelines.length + " Timelines"
+              }
+            </p>
 
             <div className="col text-left">
               <ul className="list-group list-group-flush">
