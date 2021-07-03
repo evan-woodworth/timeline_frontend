@@ -41,8 +41,10 @@ const DetailUpdate = (props) => {
         <form onSubmit={handleSubmit}>
             <label htmlFor="title"> Title </label>
             <input type="text" name="title" value={updateTitle} onChange={handleTitle} />
-
-            <label> </label>
+            
+            <label htmlFor="summary"> Summary </label>
+            <input type="text" name="summary" value={updateSummary} onChange={handleSummary} />
+            
             <button type="submit" className="btn btn-info">Submit</button>
         </form>
     )
