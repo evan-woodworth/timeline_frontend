@@ -43,10 +43,12 @@ const NewTimeline = (props) => {
         <h1>New Timeline Page</h1>
           <label htmlFor="title">Timeline Title</label>
             <input type="text" name="title" value={title} onChange={handleTitle} />
+          <br/>
           <label htmlFor="private">Private
             <input type="checkbox" name="private" value={isPrivate} onChange={handleIsPrivate} />
             <span className="slider round"></span>
           </label>
+          <br/>
           <button type="submit" className="btn btn-primary">Next</button>
       </form>
     </div>
