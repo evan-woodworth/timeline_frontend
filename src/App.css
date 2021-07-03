@@ -22,6 +22,7 @@ body {
 	--clr-entry-back: #ddd;
 	--clr-entry-text: #333;
 	--line-position: 0%;
+	--entry-card-width: 150px;
 }
 
 .timeline {
@@ -60,7 +61,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--clr-entry-back);
-	width: 150px;
+	width: var(--entry-card-width);
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
@@ -77,7 +78,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--clr-entry-back);
-	width: 150px;
+	width: var(--entry-card-width);
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
