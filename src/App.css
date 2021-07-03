@@ -23,6 +23,8 @@ body {
 	--clr-entry-text: #333;
 	--line-position: 0%;
 	--entry-card-width: 150px;
+  --clr-link-text: #333;
+  --clr-link-text--hover:#7F7E7E;
 }
 
 .timeline {
@@ -114,6 +116,13 @@ body {
 	transform: rotate(-45deg) translateX(-50%);
 }
 
+.timeline-links{
+  color:var(--clr-link-text)
+}
+
+.timeline-links:hover{
+  color:var(--clr-link-text--hover)
+}
 
 @media only screen and (max-width:450px){
   

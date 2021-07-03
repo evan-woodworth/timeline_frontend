@@ -24,14 +24,14 @@ export default function MyTimelines(props) {
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-        <div className="col" key={idx}>
-            <div className="card card-body">
+        <>
+            <li className="list-group-item pl-0">
             <Link to={{
                 pathname:'/timelines',
                 state: {timeline: timeline}
-            }}> {timeline.title} </Link>
-            </div>
-        </div>
+            }} className="timeline-links"> {timeline.title} </Link>
+            </li>
+        </>
     ))
 
     useEffect(async ()=>{
@@ -49,7 +49,14 @@ export default function MyTimelines(props) {
     return (
         <div className="container">
             <h2>My Timelines:</h2>
-            <div className="row text-center justify-content-around" style={{}}>{displayUserTimelines}</div>
+            <p style={{fontWeight:"500"}}>{displayUserTimelines.length === 0? "<b>No Timelines Found</b>" :  displayUserTimelines.length + " Timelines"}</p>
+
+            <div className="col text-left">
+              <ul className="list-group list-group-flush">
+               {displayUserTimelines}
+              </ul>
+              
+            </div>
         </div>
     )
 }
