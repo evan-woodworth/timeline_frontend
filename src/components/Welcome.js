@@ -26,7 +26,7 @@ const Welcome = (props) => {
     return (
       <>
       <header /> 
-        <div>
+        <div className="container">
           <div className="header-tagline__container">
             <h1 style={{fontWeight:"700", marginBottom:"5px"}}>Make learning fun </h1>
             <p className="h5">Create easy to read timelines of your favorite subjects</p>
