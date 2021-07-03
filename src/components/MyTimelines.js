@@ -24,12 +24,12 @@ export default function MyTimelines(props) {
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-        <div className="col" >
+        <div className="col" key={idx}>
             <div className="card card-body">
             <Link to={{
                 pathname:'/timelines',
                 state: {timeline: timeline}
-            }} key={idx}> {timeline.title} </Link>
+            }}> {timeline.title} </Link>
             </div>
         </div>
     ))
@@ -41,7 +41,7 @@ export default function MyTimelines(props) {
         console.log(theTimelines);
         console.log(user)
         setFinishedLoading(true);
-    },[])
+    }, [user])
 
     if (!finishedLoading) {
         return (<p>...Loading</p>)
