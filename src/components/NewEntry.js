@@ -15,7 +15,7 @@ const NewEntry = (props) => {
     const [summary, setSummary] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
-    const [rerender, setRerender] = useState(false);
+    // const [rerender, setRerender] = useState(false);
 
     // const handleTimeline = (e) => {
     //     setTimeline(e.target.value);
@@ -57,14 +57,14 @@ const NewEntry = (props) => {
         axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data)
         .then(response => {
             console.log(response.data);
-            setRerender(true);
+            alert('Entry successfully created');
         }).catch(error => {
             console.log(error);
             alert('Unsuccessful entry creation');
         });
     }
 
-    if (rerender === true) return <Redirect to='/timelines' />
+    // if (rerender === true) return <Redirect to='/timelines' />
 
 
     return (
