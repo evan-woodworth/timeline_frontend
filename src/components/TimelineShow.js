@@ -152,8 +152,10 @@ export default function Test(props) {
             ) : (
                 <></>
             ) }
-            <div className="timeline-title">{title}</div>
-            <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
+            <div className="timeline-title">
+                <h2>{title}</h2>
+                <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
+            </div>
             <div className="timeline">
                 <div className="timeline-current-point"></div>
                 <div className="timeline-entries">

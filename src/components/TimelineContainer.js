@@ -141,7 +141,7 @@ export default function TimelineContainer(props) {
             </div>
             <div className="timeline-display">
                 {timelines.map((t, idx) => (
-                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} 
+                    <TimelineShow {...props} key={idx} user={props.user} title={props.location.state.timeline.title} entries={t} frame={frame} 
                     handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} handleEntryDelete={handleEntryDelete} />
                 ))}
             </div>
