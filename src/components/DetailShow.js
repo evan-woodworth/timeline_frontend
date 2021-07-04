@@ -41,7 +41,7 @@ export default function DetailShow(props) {
                                 <p>{nestEntry.description}</p>
                                 { (updatePage === true) ? (
                                     <div>
-                                        <DetailUpdate entry={nestEntry}/>
+                                        <DetailUpdate handleSubmit={props.handleEntryUpdate} entry={nestEntry}/>
                                     </div>
                                     
                                 ) : <></> }
@@ -54,7 +54,7 @@ export default function DetailShow(props) {
                             <p>{entry.description}</p>
                             { (updatePage === true) ? (
                                 <div>
-                                    <DetailUpdate entry={entry}/>
+                                    <DetailUpdate handleSubmit={props.handleEntryUpdate} entry={entry}/>
                                 </div>
                             ) : <></> }
                             <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>

@@ -131,7 +131,7 @@ export default function Test(props) {
         <div className="TimelineShow">
             { detailCardOpen ? (
                 <div style={{position: 'absolute', zIndex: '1', top:"10%"}}>
-                    <DetailShow entry={currentEntry} hideDetails={hideDetails} />
+                    <DetailShow entry={currentEntry} handleEntryUpdate={props.handleEntryUpdate} hideDetails={hideDetails} />
                 </div>
             ) : (
                 <></>

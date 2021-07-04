@@ -4,12 +4,11 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
 const DetailUpdate = (props) => {
-    console.log(props)
-    const { id, user, timeline, categories, datetime, title, summary, description, image, time } = props.entry
+    const { id, user, timeline, categories, datetime, title, summary, description, image, time, date } = props.entry
     const [updateTitle, setUpdateTitle] = useState(title);
     const [updateSummary, setUpdateSummary] = useState(summary);
     const [updateDescription, setUpdateDescription] = useState(description);
-    const [updateDatetime, setUpdateDatetime] = useState(datetime);
+    const [updateDatetime, setUpdateDatetime] = useState(date);
     const [updateImage, setUpdateImage] = useState(image);
 
     const data = {
@@ -43,22 +42,9 @@ const DetailUpdate = (props) => {
     const handleImage = (e) => {
         setUpdateImage(e.target.value);
     }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(data)
-        axios.put(`${REACT_APP_SERVER_URL}/api/entries/${id}/`, data)
-        .then(response => {
-            console.log(response.data);
-            alert(`Entry ${title} updated`);
-        }).catch(error => {
-            console.log('--------- ENTRY UPDATE ERROR ---------')
-            console.log(error);
-        })
-    }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={e=>props.handleSubmit(e, data)}>
             <label htmlFor="title"> Title </label>
             <input type="text" name="title" value={updateTitle} onChange={handleTitle} />
             <br/>
