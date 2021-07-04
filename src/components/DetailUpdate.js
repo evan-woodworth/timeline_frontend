@@ -39,9 +39,6 @@ const DetailUpdate = (props) => {
     const handleImage = (e) => {
         setUpdateImage(e.target.value);
     }
-  console.log("Show me the props!!!!!!")
-  console.log("Inside DetailUpdate page")
-  console.log(props)
 
     return (
         <div className="card card-body mb-3" style={{fontWeight:"600"}}>
