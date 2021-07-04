@@ -23,8 +23,8 @@ body {
 	--clr-entry-text: #333;
 	--line-position: 0%;
 	--entry-card-width: 150px;
-  --clr-link-text: #333;
-  --clr-link-text--hover:#7F7E7E;
+	--clr-link-text: #333;
+	--clr-link-text--hover:#7F7E7E;
 }
 
 .timeline {
@@ -38,7 +38,7 @@ body {
 	height: 100%;
 }
 .timeline-entries {
-	margin: -9px -10px;
+	margin: -10px -10px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -117,36 +117,36 @@ body {
 }
 
 .timeline-entry-details{
-  background:rgba(255,255,255,.9);
-  border:rgba(0,0,0,0.2) 1px solid;
-  border-radius: 5px;
-  max-width: 75%;
-  padding:20px;
-  position: absolute;
-  margin: 15% 15%;
-  /* justify-content: center; */ 
-  
+	background:rgba(255,255,255,.9);
+	border:rgba(0,0,0,0.2) 1px solid;
+	border-radius: 5px;
+	max-width: 75%;
+	padding:20px;
+	position: absolute;
+	margin: 15% 15%;
+	/* justify-content: center; */ 
+	
 }
 
 .timeline-links{
-  color:var(--clr-link-text)
+	color:var(--clr-link-text)
 }
 
 .timeline-links:hover{
-  color:var(--clr-link-text--hover)
+	color:var(--clr-link-text--hover)
 }
 
 .timeline-modal{
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  display: flex;
-  
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: flex;
+	
 }
 
 @media only screen and (max-width:450px){

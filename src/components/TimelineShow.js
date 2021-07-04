@@ -14,8 +14,10 @@ const wrangleEntries = ( entryList, cardWidth, width ) => {
     // The goal here is to nest entries that are too close to each other.
     // --cardWidth-- represents the pixel width of an entry, while
     // --width-- represents the width of the available window.
+    // if --width-- is below a predetermined threshold, the timeline length changes.
+    if (window.innerWidth <= 550) width = 2000;
     // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
-    let wrangleWidth = Math.floor(100*(cardWidth/width))+1
+    let wrangleWidth = Math.floor(100*(cardWidth/width))+5
     for (let i=0; i < entryList.length-1; i++) {
         let checkAgain = true;
         let nestingHappened = false;
