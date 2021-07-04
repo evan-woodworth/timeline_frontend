@@ -7,6 +7,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export default function TimelineContainer(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
+    console.log(props)
     const timelineId = props.location.state.timeline.id;
     const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);
@@ -58,6 +59,19 @@ export default function TimelineContainer(props) {
         }
     }
 
+    const handleEntryUpdate = (e, data) => {
+        e.preventDefault();
+        console.log(data)
+        axios.put(`${REACT_APP_SERVER_URL}/api/entries/${data.id}/`, data)
+        .then(response => {
+            console.log(response.data);
+            loadTimeLineData();
+        }).catch(error => {
+            console.log('--------- ENTRY UPDATE ERROR ---------')
+            console.log(error);
+        })
+    }
+
     const handleNewEntry = (e, data) => {
         e.preventDefault();
         console.log(data);
@@ -65,7 +79,6 @@ export default function TimelineContainer(props) {
         axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data)
         .then(response => {
             console.log(response.data);
-            alert('Entry successfully created');
             loadTimeLineData();
         }).catch(error => {
             console.log(error);
@@ -116,7 +129,8 @@ export default function TimelineContainer(props) {
             </div>
             <div className="timeline-display">
                 {timelines.map((t, idx) => (
-                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} handleNewEntry={handleNewEntry} />
+                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} 
+                    handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>
