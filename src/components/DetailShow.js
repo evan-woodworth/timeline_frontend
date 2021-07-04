@@ -12,12 +12,12 @@ export default function DetailShow(props) {
         setUpdatePage(!updatePage)
     }
 
-    const handleDelete = () => {
+    const handleDelete = (e, entryToDelete) => {
         // axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`, payload)
-        axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`)
+        axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entryToDelete.id}/`)
         .then(response => {
             console.log(response.data);
-            alert(`Entry ${entry.title} deleted`);
+            alert(`Entry ${entryToDelete.title} deleted`);
         }).catch(error => {
             console.log('------------ ENTRY DELETE ERROR ------------');
             console.log(error);
@@ -39,18 +39,30 @@ export default function DetailShow(props) {
                         <h5>{nestEntry.date}</h5>
                         <h6>{nestEntry.subject}</h6>
                         <p>{nestEntry.description}</p>
+                        { (updatePage === true) ? (
+                            <div>
+                                <DetailUpdate entry={nestEntry}/>
+                            </div>
+                            
+                        ) : <></> }
+                        <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
+                        <div className="btn btn-danger" onClick={e=>handleDelete(e,nestEntry)}> Delete </div>
                     </div>
                 ))
             ) : (
-                <p>{entry.description}</p>
-            ) }
-            <button className="btn btn-secondary mr-3" onClick={handleUpdate}> Update </button>
-            <button className="btn btn-danger" onClick={handleDelete}> Delete </button>
-            { (updatePage === true) ? (
                 <div>
-                    <DetailUpdate entry={props.entry}/>
+                    <p>{entry.description}</p>
+                    { (updatePage === true) ? (
+                        <div>
+                            <DetailUpdate entry={entry}/>
+                        </div>
+                    ) : <></> }
+                    <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
+                    <div className="btn btn-danger" onClick={e=>handleDelete(e,entry)}> Delete </div>
                 </div>
-            ) : <></> }
+            )}
+
+
         </div>
       </div>
     )
