@@ -48,11 +48,11 @@ const NewEntry = (props) => {
                 <form onSubmit={e=>props.handleSubmit(e, data)}>
                 <div className="form-group">
                     <label htmlFor="title"> Title </label>
-                    <input className="form-control" type="text" name="title" value={title} onChange={handleTitle}placeholder="Enter a Timeline Title (max length 50 chars)" />
+                    <input className="form-control" type="text" name="title" value={title} onChange={handleTitle}placeholder="Enter a Title (max length 50 chars)" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="summary"> Summary </label>
-                    <input className="form-control" type="text" name="summary" value={summary} onChange={handleSummary} placeholder="Enter a summary (max length 100 chars)"/>
+                    <input className="form-control" type="text" name="summary" value={summary} onChange={handleSummary} placeholder="Enter a Summary (max length 100 chars)"/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description"> Description </label>
@@ -64,7 +64,7 @@ const NewEntry = (props) => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="image"> Image </label>
-                    <input className="form-control" type="text" name="image" value={image} onChange={handleImage} placeholder="Enter an image URL"/>
+                    <input className="form-control" type="text" name="image" value={image} onChange={handleImage} placeholder="Enter an Image URL"/>
                 </div>
                 <button type="submit" className="btn btn-primary"> Submit </button>
                 </form>

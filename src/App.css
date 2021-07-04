@@ -216,3 +216,36 @@ body {
 		transform: rotate(-45deg) translateY(-50%);
 	}
 }
+
+.teamContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.teamContainer p {
+	font-weight: bold;
+	color: hsl(209, 61%, 16%);
+}
+.teamContainer a {
+	color: hsl(209, 34%, 30%);
+}
+.teamCard {
+	border: solid #343a40 2px;
+	border-radius: 30px;
+	border-bottom-right-radius: 100px;
+	border-bottom-left-radius: 100px;
+	padding: 10px 0 0 0;
+	margin: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	width: auto;
+}
+.teamCard img {
+	height: 200px;
+	width: 200px;
+	border-radius: 100px;
+	margin-bottom: -1px;
+}
