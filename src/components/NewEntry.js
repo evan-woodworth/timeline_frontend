@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
-import axios from 'axios';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 
 const NewEntry = (props) => {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     const user = props.user.user_id
     const timeline = props.timeline.title
     const [title, setTitle] = useState('');
-    const [datetime, setDatetime] = useState('');
+    const [datetime, setDatetime] = useState('2021-01-01');
     const [summary, setSummary] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');

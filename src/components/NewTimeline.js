@@ -27,24 +27,11 @@ const NewTimeline = (props) => {
     private: isPrivate
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
-    axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data)
-    .then(response => {
-      console.log(response.data);
-      alert('Timeline created');
-    }).catch(error => {
-      console.log(error)
-      alert('Unsuccessful')
-    });
-  }
-
   return (
     <div className="container card card-body col-7">
       <h2>Create a Timeline</h2>
       <div className="btn btn-primary" onClick={e=>props.handleNewTimeline(e)}> X </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e=>props.handleTimelineSubmit(e, data)}>
       <div className="form-group">
         <label htmlFor="title" style={{fontWeight:"600"}}>Title</label>
         <input className="form-control" type="text" name="title" value={title} maxLength="50" onChange={handleTitle} placeholder="Enter a Timeline Title (max length 50 chars)"/>
