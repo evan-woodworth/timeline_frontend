@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import TimelineShow from './TimelineShow';
-import NewEntry from './NewEntry';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function TimelineContainer(props) {
