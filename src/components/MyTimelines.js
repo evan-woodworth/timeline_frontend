@@ -73,7 +73,7 @@ export default function MyTimelines(props) {
             {newTimelineButton()}
 
             <div className="col text-left">
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush col-7">
                {displayUserTimelines}
               </ul>
               
