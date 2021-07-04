@@ -58,7 +58,23 @@ export default function TimelineContainer(props) {
         }
     }
 
-    useEffect( async () => {
+    const handleNewEntry = (e, data) => {
+        e.preventDefault();
+        console.log(data);
+        // axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data, payload)
+        axios.post(`${REACT_APP_SERVER_URL}/api/entries/`, data)
+        .then(response => {
+            console.log(response.data);
+            alert('Entry successfully created');
+            loadTimeLineData();
+        }).catch(error => {
+            console.log(error);
+            alert('Unsuccessful entry creation');
+        });
+    }
+
+    const loadTimeLineData = async () => {
+        setFinishedLoading(false);
         let timelineArray = [];
 
         for await (const id of timelineIds) {
@@ -84,6 +100,10 @@ export default function TimelineContainer(props) {
         setFrame([start, end]);
         setBigFrame([start, end]);
         setFinishedLoading(true);
+    }
+
+    useEffect( async () => {
+        loadTimeLineData();
     }, [])
 
     if (!finishedLoading) {
@@ -96,7 +116,7 @@ export default function TimelineContainer(props) {
             </div>
             <div className="timeline-display">
                 {timelines.map((t, idx) => (
-                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} />
+                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} handleNewEntry={handleNewEntry} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>
