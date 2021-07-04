@@ -71,6 +71,7 @@ function App() {
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
                 <PrivateRoute path='/timelines' component={TimelineContainer} user={currentUser} />
                 <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
+                <Route path='*' component={Welcome} />
             </Switch>
         </div>
         <Footer />
