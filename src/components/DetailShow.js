@@ -10,12 +10,24 @@ export default function DetailShow(props) {
         setUpdatePage(!updatePage)
     }
 
+    const hideUpdatePage = (e) =>{
+      setUpdatePage(false)
+    }
+
+    const swapDate = (date)=>{
+      const splitDate = date.split("-")
+      const yearRemoved = splitDate.shift()
+      splitDate.push(yearRemoved)
+      const newDateFormat = splitDate.join("-")
+      return newDateFormat
+    }
+
     return (
             <div className="timeline-modal">
                 <div className="timeline-entry-details container">
-                    <div className="btn btn-primary float-right" onClick={e=>props.hideDetails(e)}> X </div>
+                    <div className="btn btn-danger float-right pl-3 pr-3" onClick={e=>props.hideDetails(e)} style={{fontSize:"1.3rem"}}> X </div>
                     <h3>{entry.title}</h3>
-                    <h4>{entry.date}</h4>
+                    <h5>{swapDate(entry.date)}</h5>
                     <h5>{entry.subject}</h5>
                     { entry.nestedEntries.length ? (
                         entry.nestedEntries.map((nestEntry,idx)=>(
@@ -27,24 +39,24 @@ export default function DetailShow(props) {
                                 <p>{nestEntry.description}</p>
                                 { (updatePage === true) ? (
                                     <div>
-                                        <DetailUpdate handleSubmit={props.handleEntryUpdate} entry={nestEntry}/>
+                                        <DetailUpdate handleSubmit={props.handleEntryUpdate} hideUpdatePage={hideUpdatePage} entry={nestEntry}/>
                                     </div>
                                     
                                 ) : <></> }
-                                <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
+                                <div className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </div>
                                 <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,nestEntry)}> Delete </div>
                             </div>
                         ))
                     ) : (
                         <div>
-                            <img src={entry.image}/>
+                            <img className="timeline-img" src={entry.image}/>
                             <p>{entry.description}</p>
                             { (updatePage === true) ? (
                                 <div>
-                                    <DetailUpdate handleSubmit={props.handleEntryUpdate} entry={entry}/>
+                                    <DetailUpdate handleSubmit={props.handleEntryUpdate} hideUpdatePage={hideUpdatePage} entry={entry}/>
                                 </div>
                             ) : <></> }
-                            <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
+                            <div className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </div>
                             <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,entry)}> Delete </div>
                         </div>
                     )}
