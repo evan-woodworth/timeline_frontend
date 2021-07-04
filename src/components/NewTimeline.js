@@ -43,6 +43,7 @@ const NewTimeline = (props) => {
   return (
     <div className="container card card-body col-7">
       <h2>Create a Timeline</h2>
+      <div className="btn btn-primary" onClick={e=>props.handleNewTimeline(e)}> X </div>
       <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="title" style={{fontWeight:"600"}}>Title</label>
@@ -54,9 +55,8 @@ const NewTimeline = (props) => {
           <label htmlFor="private" className="form-check-label" style={{fontWeight:"600"}}>Make Timeline Private?
           </label>
         </div>
-        </div>
-        <button type="submit" className="btn btn-primary ">Submit</button>
-     
+      </div>
+        <button type="submit" className="btn btn-primary ">Submit</button>     
       </form>
     </div>
   )

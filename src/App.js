@@ -15,7 +15,6 @@ import Profile from './components/Profile';
 import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
-import NewTimeline from './components/NewTimeline'
 import TimelineContainer from './components/TimelineContainer';
 import ProfileTimelines from './components/ProfileTimelines'
 import MyTimelines from './components/MyTimelines';
@@ -68,7 +67,6 @@ function App() {
                 <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
                 <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
                 <Route path='/about' component={About} />
-                <PrivateRoute path='/newtimeline' component={NewTimeline} user={currentUser} />
                 <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} />
                 <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
                 <PrivateRoute path='/timelines' component={TimelineContainer} user={currentUser} />
