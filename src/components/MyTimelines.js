@@ -11,6 +11,7 @@ export default function MyTimelines(props) {
     const [userTimelines, setUserTimelines] = useState([]);
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [newTimeline, setNewTimeline] = useState(false);
+    const [timelineChange, setTimelineChange] = useState(false);
 
     const getUserTimelines = async (userId) => {
         try {
@@ -32,7 +33,7 @@ export default function MyTimelines(props) {
         // console.log(theTimelines);
         // console.log(user)
         setFinishedLoading(true);
-    }, [user])
+    }, [user, timelineChange])
 
     const handleNewTimeline = (e) => {
         setNewTimeline(!newTimeline);
@@ -41,9 +42,8 @@ export default function MyTimelines(props) {
     const handleTimelineSubmit = (e, data) => {
         // axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
         axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data)
-        .then(response => {
-            console.log(response.data);
-            window.location.reload();
+        .then(() => {
+            setTimelineChange(!timelineChange)
         }).catch(error => {
           console.log(error);
           alert('Unable to create timeline. Please try again.');
@@ -52,9 +52,8 @@ export default function MyTimelines(props) {
 
     const handleDeleteTimeline = (e, timeline) => {
         axios.delete(`${REACT_APP_SERVER_URL}/api/timelines/${timeline.id}`)
-        .then(response => {
-            console.log(response.data);
-            window.location.reload();
+        .then(() => {
+            setTimelineChange(!timelineChange)
         }).catch(error => {
             console.log(error);
             alert('Unable to delete timeline. Please try again.');
