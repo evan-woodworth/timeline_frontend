@@ -26,7 +26,7 @@ export default function MyTimelines(props) {
     }
   
     useEffect(async ()=>{
-        console.log('-----------------------------------------------------------')
+        // console.log('-----------------------------------------------------------')
         const theTimelines = await getUserTimelines(user.user_id);
         setUserTimelines(theTimelines);
         // console.log(theTimelines);
@@ -42,8 +42,8 @@ export default function MyTimelines(props) {
         // axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
         axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data)
         .then(response => {
-          console.log(response.data);
-          getUserTimelines(user.user_id);
+            console.log(response.data);
+            window.location.reload();
         }).catch(error => {
           console.log(error);
           alert('Unable to create timeline. Please try again.');
@@ -67,7 +67,7 @@ export default function MyTimelines(props) {
                 pathname:'/timelines',
                 state: {timeline: timeline}
             }} className="timeline-links"> {timeline.title} </Link>
-            <button type="submit" className="btn btn-danger float-right" onClick={e=>handleDeleteTimeline(e, timeline)}>Delete</button>
+            <button className="btn btn-danger float-right" onClick={e=>handleDeleteTimeline(e, timeline)}>Delete</button>
             </li>
     ))
 

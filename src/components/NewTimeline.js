@@ -1,7 +1,4 @@
 import React, {useState} from 'react';
-import axios from 'axios';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-
 
 const NewTimeline = (props) => {
   const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
