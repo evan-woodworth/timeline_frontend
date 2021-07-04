@@ -59,6 +59,19 @@ export default function TimelineContainer(props) {
         }
     }
 
+    const handleEntryDelete = (e, entryToDelete) => {
+        // axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`, payload)
+        axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entryToDelete.id}/`)
+        .then(response => {
+            console.log(response.data);
+            loadTimeLineData();
+        }).catch(error => {
+            console.log('------------ ENTRY DELETE ERROR ------------');
+            console.log(error);
+            alert('Delete unsuccessful. Please try again.');
+        })
+    };
+
     const handleEntryUpdate = (e, data) => {
         e.preventDefault();
         console.log(data)
@@ -130,7 +143,7 @@ export default function TimelineContainer(props) {
             <div className="timeline-display">
                 {timelines.map((t, idx) => (
                     <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} 
-                    handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} />
+                    handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} handleEntryDelete={handleEntryDelete} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>

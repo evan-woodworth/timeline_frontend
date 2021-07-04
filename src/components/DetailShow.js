@@ -12,19 +12,6 @@ export default function DetailShow(props) {
         setUpdatePage(!updatePage)
     }
 
-    const handleDelete = (e, entryToDelete) => {
-        // axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entry.id}/`, payload)
-        axios.delete(`${REACT_APP_SERVER_URL}/api/entries/${entryToDelete.id}/`)
-        .then(response => {
-            console.log(response.data);
-            alert(`Entry ${entryToDelete.title} deleted`);
-        }).catch(error => {
-            console.log('------------ ENTRY DELETE ERROR ------------');
-            console.log(error);
-            alert('Delete unsuccessful. Please try again.');
-        })
-    };
-
     return (
             <div className="timeline-modal">
                 <div className="timeline-entry-details container">
@@ -38,6 +25,7 @@ export default function DetailShow(props) {
                                 <h4>{nestEntry.title}</h4>
                                 <h5>{nestEntry.date}</h5>
                                 <h6>{nestEntry.subject}</h6>
+                                <img src={nestEntry.image}/>
                                 <p>{nestEntry.description}</p>
                                 { (updatePage === true) ? (
                                     <div>
@@ -46,11 +34,12 @@ export default function DetailShow(props) {
                                     
                                 ) : <></> }
                                 <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
-                                <div className="btn btn-danger" onClick={e=>handleDelete(e,nestEntry)}> Delete </div>
+                                <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,nestEntry)}> Delete </div>
                             </div>
                         ))
                     ) : (
                         <div>
+                            <img src={entry.image}/>
                             <p>{entry.description}</p>
                             { (updatePage === true) ? (
                                 <div>
@@ -58,7 +47,7 @@ export default function DetailShow(props) {
                                 </div>
                             ) : <></> }
                             <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
-                            <div className="btn btn-danger" onClick={e=>handleDelete(e,entry)}> Delete </div>
+                            <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,entry)}> Delete </div>
                         </div>
                     )}
             </div>
