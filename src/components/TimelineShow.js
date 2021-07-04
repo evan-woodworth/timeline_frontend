@@ -124,7 +124,7 @@ export default function Test(props) {
     return (
         <div className="TimelineShow">
             { detailCardOpen ? (
-                <div style={{position: 'absolute', zIndex: '99'}}>
+                <div style={{position: 'absolute', zIndex: '1', top:"10%"}}>
                     <DetailShow entry={currentEntry} hideDetails={hideDetails} />
                 </div>
             ) : (

@@ -26,7 +26,8 @@ export default function DetailShow(props) {
     };
 
     return (
-        <div className="timeline-entry-details">
+      <div className="timeline-modal">
+        <div className="timeline-entry-details container">
             <div className="btn btn-primary" onClick={e=>props.hideDetails(e)}> X </div>
             <h3>{entry.title}</h3>
             <h4>{entry.date}</h4>
@@ -43,13 +44,14 @@ export default function DetailShow(props) {
             ) : (
                 <p>{entry.description}</p>
             ) }
-            <div className="btn btn-secondary" onClick={handleUpdate}> Update </div>
-            <div className="btn btn-danger" onClick={handleDelete}> Delete </div>
+            <button className="btn btn-secondary mr-3" onClick={handleUpdate}> Update </button>
+            <button className="btn btn-danger" onClick={handleDelete}> Delete </button>
             { (updatePage === true) ? (
                 <div>
                     <DetailUpdate entry={props.entry}/>
                 </div>
             ) : <></> }
         </div>
+      </div>
     )
 }
