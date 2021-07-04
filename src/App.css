@@ -22,7 +22,9 @@ body {
 	--clr-entry-back: #ddd;
 	--clr-entry-text: #333;
 	--line-position: 0%;
-	--entry-card-width: 150px;
+	--entry-card-width-horizontal: 150px;
+	--entry-card-width-vertical: 200px;
+	--entry-card-height: 250px;
 	--clr-link-text: #333;
 	--clr-link-text--hover:#7F7E7E;
 }
@@ -63,7 +65,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--clr-entry-back);
-	width: var(--entry-card-width);
+	width: var(--entry-card-width-horizontal);
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
@@ -80,7 +82,7 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--clr-entry-back);
-	width: var(--entry-card-width);
+	width: var(--entry-card-width-horizontal);
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
@@ -128,8 +130,8 @@ body {
 }
 
 .timeline-img{
-  max-width: 500px;
-  margin-bottom: 10px;
+	max-width: 500px;
+	margin-bottom: 10px;
 }
 
 .timeline-links{
@@ -160,6 +162,57 @@ body {
 	text-align: center;
 }
 
-@media only screen and (max-width:450px){
-  
+@media only screen and (max-width:550px){
+	.timeline {
+		margin: 150px 50% 200px;
+		height: 2000px;
+		width: 4px;
+		background-color: var(--clr-timeline);
+	}
+	.timeline-entry-point {
+		left: none;
+		top: var(--line-position);
+		left: -5px;
+	}
+	.timeline-entry-top {
+		bottom: auto;
+		left: 30px;
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: var(--clr-entry-back);
+		height: var(--entry-card-height);
+		width: var(--entry-card-width-vertical);
+		padding: 5px 5px;
+		color: var(--clr-entry-text);
+	}
+	.timeline-entry-bottom {
+		top: auto;
+		left: auto;
+		right: 30px;
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: var(--clr-entry-back);
+		height: var(--entry-card-height);
+		width: var(--entry-card-width-vertical);
+		padding: 5px 5px;
+		color: var(--clr-entry-text);
+	}
+	.timeline-entry-top::before {
+		bottom: auto;
+		margin-left: auto;
+		left: auto;
+		left: -2px;
+		margin-top: -2px;
+		top: 50%;
+		transform: rotate(-45deg) translateY(-50%);
+	}
+	.timeline-entry-bottom::before {
+		top: auto;
+		margin-left: auto;
+		left: auto;
+		right: -8px;
+		margin-top: -2px;
+		top: 50%;
+		transform: rotate(-45deg) translateY(-50%);
+	}
 }
