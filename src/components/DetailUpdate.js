@@ -4,7 +4,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
 const DetailUpdate = (props) => {
-    const { id, user, timeline, categories, datetime, title, summary, description, image, time, date } = props.entry
+    const { id, user, timeline, categories, title, summary, description, image, time, date } = props.entry
     const [updateTitle, setUpdateTitle] = useState(title);
     const [updateSummary, setUpdateSummary] = useState(summary);
     const [updateDescription, setUpdateDescription] = useState(description);
