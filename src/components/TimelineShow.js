@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DetailShow from './DetailShow';
+import NewEntry from './NewEntry';
 
 const splitDateTime = (datetime) => {
     let datetimeArray = datetime.split("T");
@@ -89,6 +90,7 @@ export default function Test(props) {
     const [detailCardOpen, setDetailCardOpen] = useState(false);
     const [currentEntry, setcurrentEntry] = useState({});
     const [finishedLoading, setFinishedLoading] = useState(false);
+    const [entryPage, setEntryPage] = useState(false);
 
     const showDetails = (e,entry) => {
         setcurrentEntry(entry);
@@ -97,6 +99,10 @@ export default function Test(props) {
 
     const hideDetails = (e) => {
         setDetailCardOpen(false);
+    }
+
+    const handleEntryPage = (e) => {
+        setEntryPage(!entryPage)
     }
 
     const changeWidth = () => {
@@ -130,7 +136,15 @@ export default function Test(props) {
             ) : (
                 <></>
             ) }
+            { entryPage ? (
+                <div className="timeline-modal" style={{position: 'absolute', zIndex: '1', top:"10%"}}>
+                    <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={handleEntryPage} />
+                </div>
+            ) : (
+                <></>
+            ) }
             <div className="timeline-title">{title}</div>
+            <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
             <div className="timeline">
                 <div className="timeline-current-point"></div>
                 <div className="timeline-entries">

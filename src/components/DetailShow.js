@@ -26,9 +26,9 @@ export default function DetailShow(props) {
     };
 
     return (
-        <div className="timeline-modal">
+          <div className="timeline-modal">
             <div className="timeline-entry-details container">
-                <div className="btn btn-primary" onClick={e=>props.hideDetails(e)}> X </div>
+                <div className="btn btn-primary float-right" onClick={e=>props.hideDetails(e)}> X </div>
                 <h3>{entry.title}</h3>
                 <h4>{entry.date}</h4>
                 <h5>{entry.subject}</h5>
