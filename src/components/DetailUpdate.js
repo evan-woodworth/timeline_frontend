@@ -5,10 +5,11 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const DetailUpdate = (props) => {
     console.log(props)
-    const { id, user, timeline, categories, datetime, title, summary, description, image } = props.entry
+    const { id, user, timeline, categories, datetime, title, summary, description, image, time } = props.entry
     const [updateTitle, setUpdateTitle] = useState(title);
     const [updateSummary, setUpdateSummary] = useState(summary);
     const [updateDescription, setUpdateDescription] = useState(description);
+    const [updateDatetime, setUpdateDatetime] = useState(datetime);
     const [updateImage, setUpdateImage] = useState(image);
 
     const data = {
@@ -16,7 +17,7 @@ const DetailUpdate = (props) => {
         user: user,
         timeline: timeline,
         categories: categories,
-        datetime: datetime,
+        datetime: `${updateDatetime}T${time}`,
         title: updateTitle,
         summary: updateSummary,
         description: updateDescription,
@@ -33,6 +34,10 @@ const DetailUpdate = (props) => {
 
     const handleDescription = (e) => {
         setUpdateDescription(e.target.value);
+    }
+
+    const handleDatetime = (e) => {
+        setUpdateDatetime(e.target.value);
     }
 
     const handleImage = (e) => {
@@ -62,6 +67,9 @@ const DetailUpdate = (props) => {
             <br/>
             <label htmlFor="description"> Description </label>
             <input type="text" name="description" value={updateDescription} onChange={handleDescription} />
+            <br/>
+            <label htmlFor="datetime"> Date </label>
+            <input type="date" name="datetime" value={updateDatetime} onChange={handleDatetime} />
             <br/>
             <label htmlFor="image"> Image </label>
             <input type="text" name="image" value={updateImage} onChange={handleImage} />

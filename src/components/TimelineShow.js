@@ -138,7 +138,7 @@ export default function Test(props) {
             ) }
             { entryPage ? (
                 <div className="timeline-modal" style={{position: 'absolute', zIndex: '1', top:"10%"}}>
-                    <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={props.handleEntryPage} handleSubmit={props.handleNewEntry}/>
+                    <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={props.handleEntryPage} handleSubmit={props.handleNewEntry} closeEntryPage={handleEntryPage}/>
                 </div>
             ) : (
                 <></>

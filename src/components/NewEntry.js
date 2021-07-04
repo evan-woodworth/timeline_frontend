@@ -47,7 +47,7 @@ const NewEntry = (props) => {
     return (
         <div className="timeline-modal">
             <div className="timeline-entry-details container" style={{fontWeight:"600"}}>
-            <div className="btn btn-primary float-right" onClick={e=>props.handleEntryPage(e)}> X </div>
+            <div className="btn btn-primary float-right" onClick={e=>props.closeEntryPage(e)}> X </div>
             <h5 style={{fontWeight:"800"}}>Add new entry to this timeline</h5>
                 <form onSubmit={e=>props.handleSubmit(e, data)}>
                 <div className="form-group">
