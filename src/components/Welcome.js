@@ -30,7 +30,7 @@ const Welcome = (props) => {
           <div className="header-tagline__container">
             <h1 style={{fontWeight:"700", marginBottom:"5px"}}>Make learning fun </h1>
             <p className="h5">Create easy to read timelines of your favorite subjects</p>
-            <Link to="/newtimeline"><button className="btn btn-primary mt-1">Make a Timeline</button></Link>
+            <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
           </div>
 
           <div>
@@ -41,16 +41,6 @@ const Welcome = (props) => {
               Neque aut eum corporis libero recusandae officia, ab laboriosam at ratione fugiat consequatur illo maiores, ea accusamus facilis qui voluptate impedit. Fugit possimus magnam ex impedit aliquam. Eligendi, ipsum facilis!</p>
             </div>
           </div>
-
-            { props.user ? (
-            <div>
-                <button className="btn btn-primary" onClick={handleUserData}> Users Data </button>
-                <button className="btn btn-secondary" style={{ margin: '10px' }} onClick={handleEntries}> Entries </button>
-            </div>
-            ) :
-
-            <></>
-            }
         </div>
       </>
     )
