@@ -86,7 +86,7 @@ const parseEntries = (entryList, frame, cardWidth, width) => {
     return wrangledEntries;
 }
 
-export default function Test(props) {
+export default function TimelineShow(props) {
     const { title, frame } = props;
     const cardWidth = 150;
     const [displayEntries, setDisplayEntries] = useState([]);

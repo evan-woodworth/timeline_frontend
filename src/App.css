@@ -30,7 +30,7 @@ body {
 }
 
 .timeline {
-	margin: 400px 60px;
+	margin: 300px 60px;
 	height: 4px;
 	background-color: var(--clr-timeline);
 	position: relative;
@@ -40,7 +40,7 @@ body {
 	height: 100%;
 }
 .timeline-entries {
-	margin: -10px -10px;
+	margin: -9px -9px;
 	display: flex;
 	justify-content: space-between;
 }
