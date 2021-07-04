@@ -76,7 +76,7 @@ export default function MyTimelines(props) {
     return (
         <div className="container">
             <h2>My Timelines</h2>
-            <button className="btn btn-primary" onClick={handleNewTimeline}>Create a timeline</button>
+            <button className="btn btn-primary mb-3" onClick={handleNewTimeline}>Create a timeline</button>
             <p style={{fontWeight:"500"}}>{
               displayUserTimelines.length === 0? `No timelines found`:  displayUserTimelines.length === 1 ? 
               displayUserTimelines.length + " Timeline" : 

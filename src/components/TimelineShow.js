@@ -112,6 +112,14 @@ export default function Test(props) {
         }
     }
 
+    const swapDate = (date)=>{
+      const splitDate = date.split("-")
+      const yearRemoved = splitDate.shift()
+      splitDate.push(yearRemoved)
+      const newDateFormat = splitDate.join("-")
+      return newDateFormat
+    }
+
     useEffect(()=>{
         if (props.entries.length) {
             const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96);
@@ -137,7 +145,7 @@ export default function Test(props) {
                 <></>
             ) }
             { entryPage ? (
-                <div className="timeline-modal" style={{position: 'absolute', zIndex: '1', top:"10%"}}>
+                <div className="timeline-modal" style={{position: 'absolute', zIndex: '1', top:"6%"}}>
                     <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={props.handleEntryPage} 
                     handleSubmit={props.handleNewEntry} closeEntryPage={handleEntryPage}/>
                 </div>
@@ -154,9 +162,9 @@ export default function Test(props) {
                             <div key={i} className="timeline-entry-point" style={{'--line-position': entry.linePosition+"%"}}>
                                 <div className={"timeline-entry-" + (entry.position)}>
                                     <div className="timeline-entry-card" onClick={e=>{showDetails(e, entry)}}>
-                                        <h5 className="timeline-entry-date">{entry.date}</h5>
+                                        <h5 className="timeline-entry-date">{swapDate(entry.date)}</h5>
                                         {entry.image.length ? (
-                                            <img src={entry.image} alt={entry.title}/>
+                                            <img className="img rounded" src={entry.image} alt={entry.title}/>
                                         ):(
                                             <></>
                                         )}
