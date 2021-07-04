@@ -15,8 +15,11 @@ const wrangleEntries = ( entryList, cardWidth, width ) => {
     // The goal here is to nest entries that are too close to each other.
     // --cardWidth-- represents the pixel width of an entry, while
     // --width-- represents the width of the available window.
-    // if --width-- is below a predetermined threshold, the timeline length changes.
-    if (window.innerWidth <= 550) width = 2000;
+    // if --width-- is below a predetermined threshold, the timeline length and card size changes.
+    if (window.innerWidth <= 550) {
+        width = 2000;
+        cardWidth = 250;
+    }
     // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
     let wrangleWidth = Math.floor(100*(cardWidth/width))+5
     for (let i=0; i < entryList.length-1; i++) {
@@ -83,7 +86,7 @@ const parseEntries = (entryList, frame, cardWidth, width) => {
     return wrangledEntries;
 }
 
-export default function Test(props) {
+export default function TimelineShow(props) {
     const { title, frame } = props;
     const cardWidth = 150;
     const [displayEntries, setDisplayEntries] = useState([]);
@@ -113,11 +116,11 @@ export default function Test(props) {
     }
 
     const swapDate = (date)=>{
-      const splitDate = date.split("-")
-      const yearRemoved = splitDate.shift()
-      splitDate.push(yearRemoved)
-      const newDateFormat = splitDate.join("-")
-      return newDateFormat
+        const splitDate = date.split("-")
+        const yearRemoved = splitDate.shift()
+        splitDate.push(yearRemoved)
+        const newDateFormat = splitDate.join("-")
+        return newDateFormat
     }
 
     useEffect(()=>{
@@ -152,8 +155,10 @@ export default function Test(props) {
             ) : (
                 <></>
             ) }
-            <div className="timeline-title">{title}</div>
-            <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
+            <div className="timeline-title">
+                <h2>{title}</h2>
+                <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
+            </div>
             <div className="timeline">
                 <div className="timeline-current-point"></div>
                 <div className="timeline-entries">
