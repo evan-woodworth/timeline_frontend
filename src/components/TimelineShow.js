@@ -131,14 +131,15 @@ export default function Test(props) {
         <div className="TimelineShow">
             { detailCardOpen ? (
                 <div style={{position: 'absolute', zIndex: '1', top:"10%"}}>
-                    <DetailShow entry={currentEntry} handleEntryUpdate={props.handleEntryUpdate} hideDetails={hideDetails} />
+                    <DetailShow entry={currentEntry} handleEntryUpdate={props.handleEntryUpdate} handleEntryDelete={props.handleEntryDelete} hideDetails={hideDetails} />
                 </div>
             ) : (
                 <></>
             ) }
             { entryPage ? (
                 <div className="timeline-modal" style={{position: 'absolute', zIndex: '1', top:"10%"}}>
-                    <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={props.handleEntryPage} handleSubmit={props.handleNewEntry} closeEntryPage={handleEntryPage}/>
+                    <NewEntry user={props.user} entry={currentEntry} timeline={props.location.state.timeline} handleEntryPage={props.handleEntryPage} 
+                    handleSubmit={props.handleNewEntry} closeEntryPage={handleEntryPage}/>
                 </div>
             ) : (
                 <></>
