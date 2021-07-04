@@ -45,8 +45,8 @@ export default function MyTimelines(props) {
         .then(() => {
             setTimelineChange(!timelineChange)
         }).catch(error => {
-          console.log(error);
-          alert('Unable to create timeline. Please try again.');
+            console.log(error);
+            alert('Unable to create timeline. Please try again.');
         });
     }
 

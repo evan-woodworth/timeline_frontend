@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import DetailUpdate from './DetailUpdate';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function DetailShow(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
