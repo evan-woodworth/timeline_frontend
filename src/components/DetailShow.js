@@ -11,15 +11,15 @@ export default function DetailShow(props) {
     }
 
     const hideUpdatePage = (e) =>{
-      setUpdatePage(false)
+        setUpdatePage(false)
     }
 
     const swapDate = (date)=>{
-      const splitDate = date.split("-")
-      const yearRemoved = splitDate.shift()
-      splitDate.push(yearRemoved)
-      const newDateFormat = splitDate.join("-")
-      return newDateFormat
+        const splitDate = date.split("-")
+        const yearRemoved = splitDate.shift()
+        splitDate.push(yearRemoved)
+        const newDateFormat = splitDate.join("-")
+        return newDateFormat
     }
 
     return (
@@ -33,7 +33,7 @@ export default function DetailShow(props) {
                         entry.nestedEntries.map((nestEntry,idx)=>(
                             <div key={idx}>
                                 <h4>{nestEntry.title}</h4>
-                                <h5>{nestEntry.date}</h5>
+                                <h5>{swapDate(nestEntry.date)}</h5>
                                 <h6>{nestEntry.subject}</h6>
                                 <img src={nestEntry.image}/>
                                 <p>{nestEntry.description}</p>

@@ -156,6 +156,10 @@ body {
 	width: 50%;
 }
 
+.timeline-title {
+	text-align: center;
+}
+
 @media only screen and (max-width:450px){
   
 }

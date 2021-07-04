@@ -25,7 +25,7 @@ export default function MyTimelines(props) {
             return [{id:"fail",title:"fail"}];
         }
     }
-  
+
     useEffect(async ()=>{
         // console.log('-----------------------------------------------------------')
         const theTimelines = await getUserTimelines(user.user_id);
@@ -78,15 +78,15 @@ export default function MyTimelines(props) {
             <h2>My Timelines</h2>
             <button className="btn btn-primary mb-3" onClick={handleNewTimeline}>Create a timeline</button>
             <p style={{fontWeight:"500"}}>{
-              displayUserTimelines.length === 0? `No timelines found`:  displayUserTimelines.length === 1 ? 
-              displayUserTimelines.length + " Timeline" : 
-              displayUserTimelines.length + " Timelines"
-              }
+                displayUserTimelines.length === 0? `No timelines found`:  displayUserTimelines.length === 1 ? 
+                displayUserTimelines.length + " Timeline" : 
+                displayUserTimelines.length + " Timelines"
+            }
             </p>
             <div className="col text-left">
-              <ul className="list-group list-group-flush col-7">
-               {displayUserTimelines}
-              </ul>
+                <ul className="list-group list-group-flush col-7">
+                    {displayUserTimelines}
+                </ul>
             </div>
             { (newTimeline === true) ? 
             <div className="timeline-modal">
