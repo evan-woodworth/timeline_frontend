@@ -6,7 +6,6 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export default function TimelineContainer(props) {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     // const { timelineIds } = props // for stretch-goal of showing multiple timelines
-    console.log(props)
     const timelineId = props.location.state.timeline.id;
     const timelineIds = [timelineId] 
     const [timelines, setTimelines] = useState([]);

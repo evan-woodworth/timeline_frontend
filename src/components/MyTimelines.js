@@ -22,7 +22,7 @@ export default function MyTimelines(props) {
             return theTimelines;
         } catch (error) {
             console.log("failed to get user's timeline data", error)
-            return [{id:"fail",title:"fail"}];
+            return [{id:"fail",title:"Failed to retrieve timeline data..."}];
         }
     }
 
@@ -62,11 +62,17 @@ export default function MyTimelines(props) {
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
             <li className="list-group-item pl-0" key={idx}>
-            <Link to={{
-                pathname:'/timelines',
-                state: {timeline: timeline}
-            }} className="timeline-links"> {timeline.title} </Link>
-            <button className="btn btn-danger float-right" onClick={e=>handleDeleteTimeline(e, timeline)}>Delete</button>
+                {timeline.id == 'fail' ? (
+                    <p>{timeline.title}</p>
+                ) : (
+                    <div>
+                        <Link to={{
+                            pathname:'/timelines',
+                            state: {timeline: timeline}
+                        }} className="timeline-links"> {timeline.title} </Link>
+                        <button className="btn btn-danger float-right" onClick={e=>handleDeleteTimeline(e, timeline)}>Delete</button>
+                    </div>
+                )}
             </li>
     ))
 
