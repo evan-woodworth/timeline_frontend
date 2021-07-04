@@ -24,15 +24,6 @@ export default function MyTimelines(props) {
             return [{id:"fail",title:"fail"}];
         }
     }
-
-    const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-            <li className="list-group-item pl-0" key={idx}>
-            <Link to={{
-                pathname:'/timelines',
-                state: {timeline: timeline}
-            }} className="timeline-links"> {timeline.title} </Link>
-            </li>
-    ))
   
     useEffect(async ()=>{
         console.log('-----------------------------------------------------------')
@@ -46,6 +37,33 @@ export default function MyTimelines(props) {
     const handleNewTimeline = (e) => {
         setNewTimeline(!newTimeline);
     }
+
+    const handleTimelineSubmit = (e, data) => {
+        console.log(data)
+        // axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data, payload)
+        axios.post(`${REACT_APP_SERVER_URL}/api/timelines/`, data)
+        .then(response => {
+          console.log(response.data);
+          getUserTimelines(user.user_id);
+        }).catch(error => {
+          console.log(error)
+          alert('Unsuccessful')
+        });
+    }
+
+    const handleDeleteTimeline = (e) => {
+        console.log(e)
+    }
+
+    const displayUserTimelines = userTimelines.map((timeline, idx)=>(
+            <li className="list-group-item pl-0" key={idx}>
+            <Link to={{
+                pathname:'/timelines',
+                state: {timeline: timeline}
+            }} className="timeline-links"> {timeline.title} </Link>
+            <button className="btn btn-danger float-right" onClick={timeline => handleDeleteTimeline(timeline)}>Delete</button>
+            </li>
+    ))
 
     if (!finishedLoading) {
         return (<p>...Loading</p>)
@@ -67,7 +85,7 @@ export default function MyTimelines(props) {
             </div>
             { (newTimeline === true) ? 
             <div className="timeline-modal">
-                <NewTimeline user={props.user} handleNewTimeline={handleNewTimeline}/>
+                <NewTimeline user={props.user} handleNewTimeline={handleNewTimeline} handleTimelineSubmit={handleTimelineSubmit}/>
             </div> 
             : <></>}
         </div>
