@@ -84,8 +84,6 @@ export default function TimelineContainer(props) {
         setFrame([start, end]);
         setBigFrame([start, end]);
         setFinishedLoading(true);
-        // console.log(timelineArray);
-        // console.log([start, end]);
     }, [])
 
     if (!finishedLoading) {
@@ -97,9 +95,8 @@ export default function TimelineContainer(props) {
                 <></>
             </div>
             <div className="timeline-display">
-                {timelines.map((timeline, idx) => (
-                    console.log(timeline),
-                    <TimelineShow {...props} key={idx} user={props.user} title={timeline.title} entries={timeline} frame={frame} />
+                {timelines.map((t, idx) => (
+                    <TimelineShow {...props} key={idx} user={props.user} title={t.title} entries={t} frame={frame} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>
