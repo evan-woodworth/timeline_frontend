@@ -42,31 +42,31 @@ const DetailUpdate = (props) => {
 
     return (
         <div className="card card-body mb-3" style={{fontWeight:"600"}}>
-        <form onSubmit={e=>props.handleSubmit(e, data)}>
-          <div className="form-group">
-            <label htmlFor="title"> Title </label>
-            <input className="form-control" type="text" name="title" value={updateTitle} onChange={handleTitle} placeholder="Enter a Timeline Title (max length 50 chars)" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="summary"> Summary </label>
-            <input className="form-control" type="text" name="summary" value={updateSummary} onChange={handleSummary} placeholder="Enter a summary (max length 100 chars)" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="description"> Description </label>
-            <textarea className="form-control" type="text" name="description" value={updateDescription} onChange={handleDescription} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="datetime"> Date </label>
-            <input className="form-control" type="date" name="datetime" value={updateDatetime} onChange={handleDatetime} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="image"> Image </label>
-            <input className="form-control" type="text" name="image" value={updateImage} onChange={handleImage}  placeholder="Enter an image URL" />
-          </div>
-            <button type="submit" className="btn btn-info mr-2">Submit</button>
-            <button type="button" onClick={e=>props.hideUpdatePage(e)} className="btn btn-warning">Cancel</button>
-        </form>
-      </div>
+            <form onSubmit={e=>props.handleSubmit(e, data)}>
+                <div className="form-group">
+                    <label htmlFor="title"> Title </label>
+                    <input className="form-control" type="text" name="title" value={updateTitle} onChange={handleTitle} placeholder="Enter a Timeline Title (max length 50 chars)" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="summary"> Summary </label>
+                    <input className="form-control" type="text" name="summary" value={updateSummary} onChange={handleSummary} placeholder="Enter a summary (max length 100 chars)" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="description"> Description </label>
+                    <textarea className="form-control" type="text" name="description" value={updateDescription} onChange={handleDescription} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="datetime"> Date </label>
+                    <input className="form-control" type="date" name="datetime" value={updateDatetime} onChange={handleDatetime} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="image"> Image </label>
+                    <input className="form-control" type="text" name="image" value={updateImage} onChange={handleImage}  placeholder="Enter an image URL" />
+                </div>
+                <button type="submit" className="btn btn-info mr-2">Submit</button>
+                <button type="button" onClick={e=>props.hideUpdatePage(e)} className="btn btn-warning">Cancel</button>
+            </form>
+        </div>
     )
 }
 

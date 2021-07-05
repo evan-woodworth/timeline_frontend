@@ -32,8 +32,9 @@ const About = () => {
             </div>
             <div className="row mt-3">
                 <div className="col text-center"><span>{'Check out the Github Repositories: '}
-                  <a href="https://github.com/evan-woodworth/timeline_frontend">{'Front End (React.js)'}</a>{", "} 
-                  <a href="https://github.com/evan-woodworth/timeline_backend">{'Back End (Django)'}</a></span></div>
+                    <a href="https://github.com/evan-woodworth/timeline_frontend">{'Front End (React.js)'}</a>{", "} 
+                    <a href="https://github.com/evan-woodworth/timeline_backend">{'Back End (Django)'}</a></span>
+                </div>
             </div>
         </div>
     )
