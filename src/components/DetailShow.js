@@ -41,10 +41,13 @@ export default function DetailShow(props) {
                                     <div>
                                         <DetailUpdate handleSubmit={props.handleEntryUpdate} hideUpdatePage={hideUpdatePage} entry={nestEntry}/>
                                     </div>
-                                    
-                                ) : <></> }
-                                <div className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </div>
-                                <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,nestEntry)}> Delete </div>
+                                ) : (
+                                    <div>
+                                        <button className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </button>
+                                        <button className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,nestEntry)}> Delete </button>
+                                    </div>
+                                )}
+
                             </div>
                         ))
                     ) : (
@@ -55,9 +58,13 @@ export default function DetailShow(props) {
                                 <div>
                                     <DetailUpdate handleSubmit={props.handleEntryUpdate} hideUpdatePage={hideUpdatePage} entry={entry}/>
                                 </div>
-                            ) : <></> }
-                            <div className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </div>
-                            <div className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,entry)}> Delete </div>
+                            ) : (
+                                <div>
+                                    <button className="btn btn-secondary mr-2" onClick={handleUpdate}> Update </button>
+                                    <button className="btn btn-danger" onClick={e=>props.handleEntryDelete(e,entry)}> Delete </button>
+                                </div>
+                            )}
+
                         </div>
                     )}
             </div>
