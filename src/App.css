@@ -16,12 +16,13 @@
 html {
 	position: relative;
 	min-height: 100%;
-	width: var(--timeline-zoom);
+	width: auto;
 	height: auto;
 }
 
 body {
 	margin-bottom: 60px; /* Margin bottom by footer height */
+	width: auto;
 }
 
 .footer {
@@ -35,6 +36,10 @@ body {
 /* .app-navbar{
 	z-index: 1;
 } */
+
+.timeline-show {
+	width: var(--timeline-zoom);
+}
 
 .timeline {
 	margin: 300px 60px;

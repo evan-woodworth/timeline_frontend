@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DetailShow from './DetailShow';
 import NewEntry from './NewEntry';
+import TimelineFrameControl from './TimelineFrameControl';
 
 const splitDateTime = (datetime) => {
     let datetimeArray = datetime.split("T");
@@ -9,7 +10,8 @@ const splitDateTime = (datetime) => {
     return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
 }
 
-const wrangleEntries = ( entryList, cardWidth, width, windowZoom ) => {
+const wrangleEntries = ( incomingList, cardWidth, width, windowZoom ) => {
+    const entryList = [...incomingList];
     let wrangledEntries = [entryList[0]]
     // --entry.linePosition-- represents an entry's position on the timeline, by percentage of the whole.
     // The goal here is to nest entries that are too close to each other.
@@ -20,8 +22,9 @@ const wrangleEntries = ( entryList, cardWidth, width, windowZoom ) => {
         width = 2000;
         cardWidth = 250;
     }
+    console.log(width)
     // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
-    let wrangleWidth = (100*(cardWidth/(width*windowZoom)))+3
+    let wrangleWidth = Math.floor(100*(cardWidth/(width*windowZoom)))+3
     for (let i=0; i < entryList.length-1; i++) {
         let checkAgain = true;
         let nestingHappened = false;
@@ -64,7 +67,8 @@ const wrangleEntries = ( entryList, cardWidth, width, windowZoom ) => {
     return wrangledEntries;
 }
 
-const parseEntries = (entryList, frame, cardWidth, width, windowZoom) => {
+const parseEntries = (incomingList, frame, cardWidth, width, windowZoom) => {
+    let entryList = [...incomingList]
     let validEntries = [];
     for (let i=0; i<entryList.length; i++) {
         const { date, time, daySync } = splitDateTime(entryList[i].datetime);
@@ -95,12 +99,13 @@ export default function TimelineShow(props) {
     const [currentEntry, setcurrentEntry] = useState({});
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [entryPage, setEntryPage] = useState(false);
-    const [zoom, setZoom] = useState(1);
+    const [zoom, setZoom] = useState(.1);
 
     const handleZoom = (e, modifier) => {
         let newZoom = zoom + modifier
-        setZoom(newZoom);
-        document.documentElement.style.setProperty('--timeline-zoom', newZoom);
+        if ( newZoom > 0 && newZoom < 10 ) {
+            setZoom(newZoom);
+        }
     }
 
     const showDetails = (e,entry) => {
@@ -118,7 +123,8 @@ export default function TimelineShow(props) {
 
     const changeWidth = () => {
         if (props.entries.length) {
-            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96, zoom);
+            const theEntries = [...props.entries];
+            const parsedEntries = parseEntries(theEntries, frame, cardWidth, window.innerWidth-96, zoom);
             setDisplayEntries(parsedEntries);
         }
     }
@@ -132,11 +138,16 @@ export default function TimelineShow(props) {
     }
 
     useEffect(()=>{
+        document.documentElement.style.setProperty('--timeline-zoom', (100*zoom)+'%');
+    },[zoom])
+
+    useEffect(()=>{
         if (props.entries.length) {
-            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96, zoom);
+            const theEntries = [...props.entries];
+            const parsedEntries = parseEntries(theEntries, frame, cardWidth, window.innerWidth-96, zoom);
             setDisplayEntries(parsedEntries);
         }
-        document.documentElement.style.setProperty('--timeline-zoom', (100*zoom)+'%');
+        setZoom(1);
         setFinishedLoading(true);
         window.addEventListener('resize', changeWidth);
         return () => {
@@ -167,6 +178,7 @@ export default function TimelineShow(props) {
             <div className="timeline-title">
                 <h2>{title}</h2>
                 <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
+                <TimelineFrameControl zoom={zoom} handleZoom={handleZoom} />
             </div>
             <div className="timeline" style={{'--timeline-height': timelineHeight*zoom+'px'}}>
                 <div className="timeline-current-point"></div>
