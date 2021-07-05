@@ -277,6 +277,9 @@ li{
 		width: 100%;
 		height: auto;
 	}
+	.timeline-show {
+		width: auto;
+	}
 	.timeline {
 		margin: 150px 50% 200px;
 		height: var(--timeline-height);

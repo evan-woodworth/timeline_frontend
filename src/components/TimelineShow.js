@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import DetailShow from './DetailShow';
 import NewEntry from './NewEntry';
 import TimelineFrameControl from './TimelineFrameControl';
@@ -22,7 +22,6 @@ const wrangleEntries = ( incomingList, cardWidth, width, windowZoom ) => {
         width = 2000;
         cardWidth = 250;
     }
-    console.log(width)
     // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
     let wrangleWidth = Math.floor(100*(cardWidth/(width*windowZoom)))+3
     for (let i=0; i < entryList.length-1; i++) {
@@ -76,7 +75,7 @@ const parseEntries = (incomingList, frame, cardWidth, width, windowZoom) => {
             entryList[i]['date'] = date;
             entryList[i]['time'] = time;
             entryList[i]['daySync'] = daySync;
-            entryList[i]['linePosition'] = Math.floor(100*((daySync-frame[0].daySync)/(frame[1].daySync-frame[0].daySync)));
+            entryList[i]['linePosition'] = (100*((daySync-frame[0].daySync)/(frame[1].daySync-frame[0].daySync)));
             entryList[i]['nestedEntries'] = [];
             validEntries.push(entryList[i]);
         }
@@ -99,7 +98,7 @@ export default function TimelineShow(props) {
     const [currentEntry, setcurrentEntry] = useState({});
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [entryPage, setEntryPage] = useState(false);
-    const [zoom, setZoom] = useState(.1);
+    const [zoom, setZoom] = useState(1);
 
     const handleZoom = (e, modifier) => {
         let newZoom = zoom + modifier
@@ -124,7 +123,8 @@ export default function TimelineShow(props) {
     const changeWidth = () => {
         if (props.entries.length) {
             const theEntries = [...props.entries];
-            const parsedEntries = parseEntries(theEntries, frame, cardWidth, window.innerWidth-96, zoom);
+            const currentZoom = localStorage.getItem('currentZoom');
+            const parsedEntries = parseEntries(theEntries, frame, cardWidth, window.innerWidth-96, currentZoom);
             setDisplayEntries(parsedEntries);
         }
     }
@@ -139,6 +139,7 @@ export default function TimelineShow(props) {
 
     useEffect(()=>{
         document.documentElement.style.setProperty('--timeline-zoom', (100*zoom)+'%');
+        localStorage.setItem('currentZoom', zoom)
     },[zoom])
 
     useEffect(()=>{
@@ -147,7 +148,7 @@ export default function TimelineShow(props) {
             const parsedEntries = parseEntries(theEntries, frame, cardWidth, window.innerWidth-96, zoom);
             setDisplayEntries(parsedEntries);
         }
-        setZoom(1);
+        localStorage.setItem('currentZoom', zoom);
         setFinishedLoading(true);
         window.addEventListener('resize', changeWidth);
         return () => {
