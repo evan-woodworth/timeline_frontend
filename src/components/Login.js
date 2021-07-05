@@ -56,7 +56,7 @@ const Login = (props) => {
                         <button type="submit" className="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>
-            <div className="container text-center mt-3" >Don't have an account? <Link to="/signup">Sign up today!</Link></div>
+            <div className="container text-center mt-3" id="signup-link-login">Don't have an account? <Link to="/signup">Sign up today!</Link></div>
             </div>
         </div>
     )

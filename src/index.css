@@ -12,57 +12,5 @@ body {
   cursor: pointer;
 }
 
-header{
-  height: 25%;
-  min-height: 400px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://media.lrng.org/a2/e1/c2afbe3d9779dbba9fb33b553a17dbdab446-1920x460.jpg');
-  background-position: center;
-  background-size: cover;
-  width: 100% !important;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  z-index: -1;
-}
 
-.header-tagline__container{
-  margin-top:15%;
-  margin-bottom: 5rem;
-  color: white;
-}
 
-.nav-link--textcolor{
-  color:white !important;
-}
-
-.nav-bg--color{
-  background-color: rgba(0,0,0,.5) !important;
-}
-
-li{
-  list-style-type: none;
-}
-
-/* @media screen and (max-width: 2500px) and (min-width:1280px){ 
-  .header-tagline__container{
-    margin-top:26rem;
-  }
-} */
-
-/* @media only screen and (min-width:1441px) {
-  .headline-tagline__container{
-    margin-top:28rem;
-  }
-}
-
-@media screen and (max-width:1440px) and (min-width:1281px) {
-  .headline-tagline__container{
-    margin-top:20rem;
-  }
-}
-
-@media screen and (max-width: 1280px){ 
-  .header-tagline__container{
-    margin-top:10rem;
-  }
-} */
