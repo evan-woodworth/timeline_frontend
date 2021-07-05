@@ -16,9 +16,8 @@ import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import About from './components/About';
 import TimelineContainer from './components/TimelineContainer';
-import ProfileTimelines from './components/ProfileTimelines'
 import MyTimelines from './components/MyTimelines';
-import PublicTimeline from './components/PublicTimeline'
+
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
