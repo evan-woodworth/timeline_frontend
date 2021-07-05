@@ -104,6 +104,7 @@ export default function TimelineShow(props) {
         let newZoom = zoom + modifier
         if ( newZoom > 0 && newZoom < 10 ) {
             setZoom(newZoom);
+            changeWidth();
         }
     }
 

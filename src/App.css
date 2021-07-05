@@ -41,6 +41,18 @@ body {
 	width: var(--timeline-zoom);
 }
 
+.timeline-zoom-controls {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5px;
+}
+.timeline-zoom-display {
+	margin: 0 8px;
+	text-align: center;
+}
+
 .timeline {
 	margin: 300px 60px;
 	height: 4px;
