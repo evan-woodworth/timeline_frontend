@@ -9,7 +9,7 @@ const splitDateTime = (datetime) => {
     return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
 }
 
-const wrangleEntries = ( entryList, cardWidth, width ) => {
+const wrangleEntries = ( entryList, cardWidth, width, windowZoom ) => {
     let wrangledEntries = [entryList[0]]
     // --entry.linePosition-- represents an entry's position on the timeline, by percentage of the whole.
     // The goal here is to nest entries that are too close to each other.
@@ -21,7 +21,7 @@ const wrangleEntries = ( entryList, cardWidth, width ) => {
         cardWidth = 250;
     }
     // --wrangleWidth-- represents the calculated boundary to nest an entry, by percentage of the timeline.
-    let wrangleWidth = Math.floor(100*(cardWidth/width))+5
+    let wrangleWidth = (100*(cardWidth/(width*windowZoom)))+3
     for (let i=0; i < entryList.length-1; i++) {
         let checkAgain = true;
         let nestingHappened = false;
@@ -64,7 +64,7 @@ const wrangleEntries = ( entryList, cardWidth, width ) => {
     return wrangledEntries;
 }
 
-const parseEntries = (entryList, frame, cardWidth, width) => {
+const parseEntries = (entryList, frame, cardWidth, width, windowZoom) => {
     let validEntries = [];
     for (let i=0; i<entryList.length; i++) {
         const { date, time, daySync } = splitDateTime(entryList[i].datetime);
@@ -78,7 +78,7 @@ const parseEntries = (entryList, frame, cardWidth, width) => {
         }
     }
     // combine close entries
-    let wrangledEntries = wrangleEntries(validEntries, cardWidth, width);
+    let wrangledEntries = wrangleEntries(validEntries, cardWidth, width, windowZoom);
     // assign sides of timeline
     for (let i=0; i<wrangledEntries.length; i++) {
         wrangledEntries[i]['position'] = ( i%2 ? 'bottom' : 'top' );
@@ -89,11 +89,19 @@ const parseEntries = (entryList, frame, cardWidth, width) => {
 export default function TimelineShow(props) {
     const { title, frame } = props;
     const cardWidth = 150;
+    const timelineHeight = 2000;
     const [displayEntries, setDisplayEntries] = useState([]);
     const [detailCardOpen, setDetailCardOpen] = useState(false);
     const [currentEntry, setcurrentEntry] = useState({});
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [entryPage, setEntryPage] = useState(false);
+    const [zoom, setZoom] = useState(1);
+
+    const handleZoom = (e, modifier) => {
+        let newZoom = zoom + modifier
+        setZoom(newZoom);
+        document.documentElement.style.setProperty('--timeline-zoom', newZoom);
+    }
 
     const showDetails = (e,entry) => {
         setcurrentEntry(entry);
@@ -110,7 +118,7 @@ export default function TimelineShow(props) {
 
     const changeWidth = () => {
         if (props.entries.length) {
-            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96);
+            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96, zoom);
             setDisplayEntries(parsedEntries);
         }
     }
@@ -125,9 +133,10 @@ export default function TimelineShow(props) {
 
     useEffect(()=>{
         if (props.entries.length) {
-            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96);
+            const parsedEntries = parseEntries(props.entries, frame, cardWidth, window.innerWidth-96, zoom);
             setDisplayEntries(parsedEntries);
         }
+        document.documentElement.style.setProperty('--timeline-zoom', (100*zoom)+'%');
         setFinishedLoading(true);
         window.addEventListener('resize', changeWidth);
         return () => {
@@ -139,7 +148,7 @@ export default function TimelineShow(props) {
         return (<p>...Loading</p>)
     }
     return (
-        <div className="TimelineShow">
+        <div className="timeline-show">
             { detailCardOpen ? (
                 <div style={{position: 'absolute', zIndex: '1', top:"10%"}}>
                     <DetailShow entry={currentEntry} handleEntryUpdate={props.handleEntryUpdate} handleEntryDelete={props.handleEntryDelete} hideDetails={hideDetails} />
@@ -159,7 +168,7 @@ export default function TimelineShow(props) {
                 <h2>{title}</h2>
                 <button className="btn btn-primary" onClick={handleEntryPage}>New Entry</button>
             </div>
-            <div className="timeline">
+            <div className="timeline" style={{'--timeline-height': timelineHeight*zoom+'px'}}>
                 <div className="timeline-current-point"></div>
                 <div className="timeline-entries">
                     { displayEntries.length ? (
