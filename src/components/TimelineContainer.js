@@ -12,6 +12,15 @@ export default function TimelineContainer(props) {
     const [frame, setFrame] = useState([]);
     const [bigFrame, setBigFrame] = useState([]);
     const [finishedLoading, setFinishedLoading] = useState(false);
+    const [zoom, setZoom] = useState(1);
+
+    const handleZoom = (e, modifier) => {
+        console.log('in handlezoom')
+        let newZoom = zoom + modifier
+        if ( newZoom > 0 && newZoom < 10 ) {
+            setZoom(newZoom);
+        }
+    }
 
     const sortEntries = (entryArray) => {
         if ( entryArray.length <= 1 ) {
@@ -126,6 +135,10 @@ export default function TimelineContainer(props) {
         setFinishedLoading(true);
     }
 
+    useEffect(()=>{
+        document.documentElement.style.setProperty('--timeline-zoom', (100*zoom)+'%');
+    },[zoom])
+
     useEffect( async () => {
         loadTimeLineData();
     }, [])
@@ -141,7 +154,8 @@ export default function TimelineContainer(props) {
             <div className="timeline-display">
                 {timelines.map((t, idx) => (
                     <TimelineShow {...props} key={idx} user={props.user} title={props.location.state.timeline.title} entries={t} frame={frame} 
-                    handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} handleEntryDelete={handleEntryDelete} />
+                    handleEntryUpdate={handleEntryUpdate} handleNewEntry={handleNewEntry} handleEntryDelete={handleEntryDelete}
+                    zoom={zoom} handleZoom={handleZoom} />
                 ))}
             </div>
             <div className="timeline-controls" ></div>
