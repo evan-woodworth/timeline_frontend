@@ -6,7 +6,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Welcome = (props) => {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
     const [publicTimelines, setPublicTimelines] = useState([])
-    const publiclyViewableTimeslines = []
+    const [finishedLoading, setFinishedLoading] = useState(false)
   
   useEffect(()=>{
     const url = `${REACT_APP_SERVER_URL}/api/timelines`
@@ -14,38 +14,19 @@ const Welcome = (props) => {
     .then(response =>{
       let pulledData = response.data
       console.log(pulledData)
-      for(let i = 0; i < pulledData.length; i++){
-        if (pulledData[i].private ===false){
-          publiclyViewableTimeslines.push(pulledData[i])
-          
-        } else {
-          console.log("is not private")
-        }
-      }
+      setPublicTimelines(pulledData)
+      setFinishedLoading(true)
     }).catch(err =>{
       console.log(err)
+     
     }) 
   }, [])
-
-  // const getPublicTimelines = async ()=>{
-  //   const url = `${REACT_APP_SERVER_URL}/api/timelines`
-  //   try{
-  //     const allTimelines = await axios.get(url)
-  //     console.log(allTimelines)
-  //     setPublicTimelines(allTimelines)
-  //     return allTimelines
-  //   } catch(err){
-  //     console.log("Error while getting public timelines")
-  //     console.log(err)
-  //   }
-  // }
-  // getPublicTimelines()
-  // console.log(publicTimelines)
 
     const handleUserData = (e) => {
         axios.get(`${REACT_APP_SERVER_URL}/api/users/`, payload)
         .then(response => {
             console.log(response.data);
+      
         }).catch(error => {
             console.log(error);
             alert('Please login to view data.')
@@ -60,6 +41,15 @@ const Welcome = (props) => {
     }
     console.log(publicTimelines)
 
+    const featuredTimeLines = publicTimelines.map((timeline, index)=>(
+      <p>{timeline.title}</p>
+      )
+    )
+
+
+    if(!finishedLoading){
+      return (<p>...Loading</p>)
+    }
 
     return (
       <>
@@ -76,28 +66,21 @@ const Welcome = (props) => {
             
               <div className=" row" >
                 <div className="col-sm-4 featured-card">
-                <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
-                <h5 className="card-title">Title 1</h5>
-                  <ul>
-                    <li>Summary</li>
-                    
-                  </ul>
+                <img className="img-thumbnail rounded mb-2" src={publicTimelines[0]["entries"][4]["image"]} alt="Featured 1" />
+                <Link to={"/publictimelines"}>
+                  <h5 className="card-title">{publicTimelines[0]["title"]}</h5>
+                </Link>
+    
                 </div>
                 <div className="col-sm-4 featured-card">
                   <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
-                  <h5 className="card-title">Timeline Name 2</h5>
-                  <ul>
-                      <li>Summary</li>
-                      
-                  </ul>
+                  <h5 className="card-title">{publicTimelines[3]["title"]}</h5>
+                  
                 </div>
                 <div className="col-sm-4 featured-card">
                  <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
-                  <h5 className="card-title">Timeline Name 3</h5>
-                  <ul>
-                      <li>Summary</li>
-                      
-                  </ul>
+                  <h5 className="card-title">{publicTimelines[2]["title"]}</h5>
+                  
                 </div>
               </div>
 {/* <button type="button">Hello World</button> */}
