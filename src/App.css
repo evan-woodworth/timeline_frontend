@@ -441,7 +441,7 @@ li{
 
   .timeline-links{
     /* color: #007bff; */
-    /* text-decoration: underline; */
+    text-decoration: none;
     
   }
   .mytimelines-button__container{
