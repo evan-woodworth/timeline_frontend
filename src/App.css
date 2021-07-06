@@ -33,10 +33,13 @@ body {
 	line-height: 35px; /* Vertically center the text there */
 }
 
+.app-display {
+	overflow-x:scroll;
+}
+
 /* .app-navbar{
 	z-index: 1;
 } */
-
 .timeline-show {
 	width: var(--timeline-zoom);
 }
@@ -222,6 +225,10 @@ header{
 	justify-content: space-between;
 } */
 
+/* .navbar {
+	position: absolute;
+} */
+
 .nav-link--textcolor{
 	color:white !important;
 }
@@ -305,7 +312,10 @@ li{
 		height: auto;
 	}
 	.timeline-show {
-		width: auto;
+		width: 100%;
+	}
+	.app-display {
+		overflow-x: none;
 	}
 	.timeline {
 		margin: 150px 50% 200px;

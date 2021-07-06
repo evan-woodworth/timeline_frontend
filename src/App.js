@@ -60,22 +60,21 @@ function App() {
 
     return (
         <div className="App">
-        <Navbar isAuth={isAuthenticated} handleLogout={handleLogout} />
-        <div className="mx-5 mt-5">
-            <Switch>
-                <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
-                <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
-                <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
-                <Route path='/about' component={About} />
-                {/* <Route path='/publictimelines' component={PublicTimeline} /> */}
-                {/* <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} /> */}
-                <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
-                <PrivateRoute path='/timelines' component={TimelineContainer} user={currentUser} />
-                <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
-                <Route path='*' component={Welcome} />
-            </Switch>
-        </div>
-        <Footer />
+            <Navbar isAuth={isAuthenticated} handleLogout={handleLogout} />
+            <div className="app-display mt-5 px-5">
+                <Switch>
+                    <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
+                    <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
+                    <Route path='/login' render={(props) => <Login {...props} user={currentUser} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route path='/about' component={About} />
+                    <Route path='/profiletimelines/:id' render={(props) => <ProfileTimelines {...props} />} />
+                    <PrivateRoute path='/mytimelines' component={MyTimelines} user={currentUser} />
+                    <PrivateRoute path='/timelines' component={TimelineContainer} user={currentUser} />
+                    <PrivateRoute path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} />
+                    <Route path='*' component={Welcome} />
+                </Switch>
+            </div>
+            <Footer />
         </div>
     );
 }
