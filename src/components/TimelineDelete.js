@@ -22,7 +22,7 @@ const TimelineDelete = (props) => {
             </div>
             { (userInput === username+'/'+title) ?
               <button type="submit" className="btn btn-danger" onClick={e=>props.handleDeleteTimeline(e, id)}> I understand the consequences and wish to destroy this timeline. </button> 
-            : <button className="btn btn-danger" disabled> I understand the consequences and wish to destory this timeline. </button> }  
+            : <button className="btn btn-danger" disabled> I understand the consequences and wish to destroy this timeline. </button> }  
             </form>
         </div>
     )
