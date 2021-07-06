@@ -36,7 +36,7 @@ const Welcome = (props) => {
         <div className="container">
           <div className="header-tagline__container">
             <h1 className="header-tagline">Make learning fun </h1>
-            <p className="h5">Create easy to read timelines of your favorite subjects</p>
+            <p className="h5 header-tagline-paragraph">Create easy to read timelines of your favorite subjects</p>
             <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
           </div>
 

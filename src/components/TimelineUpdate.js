@@ -43,7 +43,7 @@ const TimelineUpdate = (props) => {
                     <label htmlFor="privacy" className="form-check-label" style={{fontWeight:"600"}}> Make Timeline Private? </label>
                 </div>
             </div>
-                <button type="submit" className="btn btn-primary"> Submit </button>
+                <button type="submit" className="btn btn-primary mr-2"> Submit </button>
                 <button className="btn btn-secondary" onClick={e=>props.handleUpdatePage(e)}> Cancel </button>
             </form>
       </div>

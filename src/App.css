@@ -110,7 +110,6 @@ body {
 	text-align: center;
 	overflow: hidden;
 	color: var(--clr-entry-text);
-  max-height: 290px;
 }
 
 .timeline-entry-top img {
@@ -129,7 +128,6 @@ body {
 	text-align: center;
 	overflow: hidden;
 	color: var(--clr-entry-text);
-  max-height: 290px;
 }
 
 .timeline-entry-bottom img {
@@ -188,7 +186,8 @@ body {
 }
 
 .timeline-links{
-	color:var(--clr-link-text)
+	color:var(--clr-link-text);
+  text-decoration: underline;
 }
 
 .timeline-links:hover{
@@ -206,6 +205,7 @@ body {
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	display: flex;
+  z-index: 2;
 }
 
 .timeline-modal img {
@@ -238,6 +238,18 @@ header{
 
 .featured-img{
   max-width:98%;
+
+}
+
+.mytimelines-container{
+  max-width:800px;
+}
+
+.mytimelines-list-container{
+  display:flex;
+  justify-content: space-between;
+}
+.mytimelines-list-container__text{
 
 }
 
@@ -311,7 +323,17 @@ li{
 .header-tagline{
 	font-weight: 700;
 	margin-bottom: 5px;
+  text-shadow: 0px 0px 4px rgb(0 0 0);
 }
+
+.mytimelines-list__text{
+  font-weight: 500;
+}
+
+.header-tagline-paragraph{
+  text-shadow: 0px 0px 4px rgb(0 0 0);
+}
+
 
 @media (min-width: 768px) and (max-width: 1024px) {
 	.featured-timeline__container{
@@ -413,6 +435,28 @@ li{
   }
   .timeline-new-form h2{
     font-size: 1.5rem;
+  }
+  .mytimelines-list-container{
+    display:block;
+    text-align: center;
+  }
+  .mytimelines-list__text{
+    font-size: 1.2rem;
+  }
+  .mytimelines-list-container__text{
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .timeline-links{
+    /* color: #007bff; */
+    /* text-decoration: underline; */
+    
+  }
+  .mytimelines-button__container{
+    padding-top: 10px;
   }
 
 }
