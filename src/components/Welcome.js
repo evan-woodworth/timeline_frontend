@@ -40,6 +40,14 @@ const Welcome = (props) => {
             <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
           </div>
 
+          <div className="containerfeatured-timeline__container">
+          <div className="row"><h3 className="mb-4" style={{fontWeight:"700"}}>Featured Timeline</h3></div>
+          <div className="">
+            <img className="featured-img" src="/img/MCU-Timeline_MD.png" alt="Featured Timeline"></img>
+          </div>
+
+          </div>
+
           {/* <div className="container featured-timeline__container">
             <div className="row"><h3 className="mb-4" style={{fontWeight:"700"}}>Featured Timelines</h3></div>
             
