@@ -92,10 +92,13 @@ export default function MyTimelines(props) {
                     <p>{timeline.title}</p>
                 ) : (
                     <div className="mytimelines-list-container">
+                        <div class="mytimelines-list-container__text">
                         <Link to={{
                             pathname:'/timelines',
                             state: {timeline: timeline}
                         }} className="timeline-links"> {timeline.title} </Link>
+                        </div>
+                        
                         <div className="mytimelines-button__container">
                         <button className="btn btn-secondary  mr-3" onClick={e=>handleUpdatePage(e, timeline)} > Update </button>
                         <button className="btn btn-danger " onClick={e=>handleDeletePage(e, timeline)}> Delete </button>
