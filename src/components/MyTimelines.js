@@ -87,17 +87,21 @@ export default function MyTimelines(props) {
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
-            <li className="list-group-item pl-0" key={idx}>
+            <li className="list-group-item pl-0 pr-0 mytimelines-list__text" key={idx}>
                 {timeline.id == 'fail' ? (
                     <p>{timeline.title}</p>
                 ) : (
-                    <div>
+                    <div className="mytimelines-list-container">
                         <Link to={{
                             pathname:'/timelines',
                             state: {timeline: timeline}
                         }} className="timeline-links"> {timeline.title} </Link>
-                        <button className="btn btn-danger float-right" onClick={e=>handleDeletePage(e, timeline)}> Delete </button>
-                        <button className="btn btn-secondary float-right" onClick={e=>handleUpdatePage(e, timeline)} > Update </button>
+                        <div className="mytimelines-button__container">
+                        <button className="btn btn-secondary  mr-3" onClick={e=>handleUpdatePage(e, timeline)} > Update </button>
+                        <button className="btn btn-danger " onClick={e=>handleDeletePage(e, timeline)}> Delete </button>
+                        
+                        </div>
+                        
                     </div>
                 )}
             </li>
@@ -116,8 +120,8 @@ export default function MyTimelines(props) {
                 displayUserTimelines.length + " Timelines"
             }
             </p>
-            <div className="col text-left">
-                <ul className="list-group list-group-flush col-7">
+            <div className="text-left mytimelines-container">
+                <ul className="list-group list-group-flush">
                     {displayUserTimelines}
                 </ul>
             </div>
