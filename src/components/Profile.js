@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 const Profile = (props) => {
     const {handleLogout} = props;
     const {user_id, username, email, exp} = props.user;
-    const expirationTime = new Date(exp * 1000);
+    const expirationTime = new Date(exp * 1000.002);
     let currentTime = Date.now();
-    // console.log('Time:', String(expirationTime));
+    console.log('Time:', String(expirationTime));
 
     if (currentTime >= expirationTime) {
         handleLogout();

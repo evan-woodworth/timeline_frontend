@@ -33,6 +33,11 @@ body {
 	line-height: 35px; /* Vertically center the text there */
 }
 
+.app-display {
+	padding: 0 45px;
+	margin: 48px 0 0 0;
+}
+
 /* .app-navbar{
 	z-index: 1;
 } */
@@ -56,6 +61,10 @@ body {
 .timeline-zoom-display {
 	margin: 0 8px;
 	text-align: center;
+}
+
+.timeline-delete {
+	white-space: initial;
 }
 
 .timeline {
@@ -187,6 +196,7 @@ body {
 }
 
 .timeline-modal{
+	z-index: 2;
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -322,7 +332,8 @@ li{
 		width: auto;
 	}
 	.app-display {
-		overflow-x: none;
+		padding: 0px;
+		margin: 0px;
 	}
 	.timeline {
 		margin: 150px 50% 200px;
