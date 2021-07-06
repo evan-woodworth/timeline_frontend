@@ -127,12 +127,12 @@ export default function MyTimelines(props) {
             </div> 
             : <></>}
             { (updatePage === true) ? 
-            <div className="timeline-modal noselect">
+            <div className="timeline-modal">
                 <TimelineUpdate user={props.user} timeline={updateTimeline} handleUpdatePage={handleUpdatePage} handleUpdateTimeline={handleUpdateTimeline}/>
             </div> 
             : <></> }
             { (deletePage === true) ? 
-            <div className="timeline-modal noselect">
+            <div className="timeline-modal">
                 <TimelineDelete user={props.user} timeline={deleteTimeline} handleDeleteTimeline={handleDeleteTimeline} handleDeletePage={handleDeletePage}/>
             </div>
             : <></>}
