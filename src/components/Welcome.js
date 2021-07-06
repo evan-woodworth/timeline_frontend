@@ -18,7 +18,6 @@ const Welcome = (props) => {
       setFinishedLoading(true)
     }).catch(err =>{
       console.log(err)
-     
     }) 
   }, [])
 
@@ -61,7 +60,7 @@ const Welcome = (props) => {
             <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
           </div>
 
-          <div className="container featured-timeline__container">
+          {/* <div className="container featured-timeline__container">
             <div className="row"><h3 className="mb-4" style={{fontWeight:"700"}}>Featured Timelines</h3></div>
             
               <div className=" row" >
@@ -78,13 +77,12 @@ const Welcome = (props) => {
                   
                 </div>
                 <div className="col-sm-4 featured-card">
-                 <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
+                  <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
                   <h5 className="card-title">{publicTimelines[2]["title"]}</h5>
                   
                 </div>
               </div>
-{/* <button type="button">Hello World</button> */}
-          </div>
+          </div> */}
         </div>
       </>
     )
