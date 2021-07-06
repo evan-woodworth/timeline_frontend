@@ -18,6 +18,10 @@ import About from './components/About';
 import TimelineContainer from './components/TimelineContainer';
 import MyTimelines from './components/MyTimelines';
 
+import axios from 'axios';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 // PRIVATE ROUTE COMPONENTS
 const PrivateRoute = ({component: Component, ...rest }) => {
