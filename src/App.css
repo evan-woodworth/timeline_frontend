@@ -160,6 +160,16 @@ body {
 	
 }
 
+.timeline-new-form{
+  background:rgba(255,255,255,1);
+  border:rgba(0,0,0,0.2) 1px solid;
+	border-radius: 5px;
+	max-width: 75%;
+	padding:20px;
+	position: absolute;
+	margin: 5% 15%;
+}
+
 .timeline-img{
 	max-width: 500px;
 	margin-bottom: 10px;
@@ -241,6 +251,8 @@ li{
 	padding-left: 0px !important;
 }
 
+
+
 .teamContainer {
 	display: flex;
 	flex-direction: row;
@@ -287,6 +299,9 @@ li{
 	.featured-timeline__container{
 		margin-top: 135px;
 	}
+  .timeline-new-form{
+    margin: 7% 15%;
+  }
 }
 
 /* @media screen and (min-width:768px) and (max-width:992px) {
@@ -379,4 +394,11 @@ li{
 	#signup-link-login {
 		font-size: 13px;
 	}
+  .timeline-new-form{
+    margin: 50% 15%;
+  }
+  .timeline-new-form h2{
+    font-size: 1.5rem;
+  }
+
 }

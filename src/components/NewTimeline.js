@@ -25,9 +25,10 @@ const NewTimeline = (props) => {
     }
 
     return (
-        <div className="container card card-body col-7">
+        <div className="container timeline-new-form">
+          <div className="btn btn-danger float-right pl-3 pr-3" onClick={e=>props.handleNewTimeline(e)} style={{display:"block"}}> X </div>
             <h2>Create a Timeline</h2>
-            <div className="btn btn-primary" onClick={e=>props.handleNewTimeline(e)}> X </div>
+            
             <form onSubmit={e=>props.handleTimelineSubmit(e, data)}>
             <div className="form-group">
                 <label htmlFor="title" style={{fontWeight:"600"}}>Title</label>

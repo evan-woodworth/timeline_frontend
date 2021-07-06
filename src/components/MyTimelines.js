@@ -70,7 +70,7 @@ export default function MyTimelines(props) {
                             pathname:'/timelines',
                             state: {timeline: timeline}
                         }} className="timeline-links"> {timeline.title} </Link>
-                        <button className="btn btn-danger float-right" onClick={e=>handleDeleteTimeline(e, timeline)}>Delete</button>
+                        <button className="btn btn-danger float-right" onClick={e=>{ if (window.confirm('Do you want to delete this timeline?')) handleDeleteTimeline(e, timeline)}}>Delete</button>
                     </div>
                 )}
             </li>
