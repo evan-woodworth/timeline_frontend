@@ -7,7 +7,7 @@
 	--timeline-zoom: 100%;
 	--timeline-height: 2000px;
 	--entry-card-width-horizontal: 150px;
-	--entry-card-width-vertical: 200px;
+	--entry-card-width-vertical: 160px;
 	--entry-card-height: 250px;
 	--clr-link-text: #333;
 	--clr-link-text--hover:#7F7E7E;
@@ -33,13 +33,14 @@ body {
 	line-height: 35px; /* Vertically center the text there */
 }
 
+/* .app-navbar{
+	z-index: 1;
+} */
+
 .timeline-display {
 	overflow-x:scroll;
 }
 
-/* .app-navbar{
-	z-index: 1;
-} */
 .timeline-show {
 	width: var(--timeline-zoom);
 }
@@ -97,6 +98,7 @@ body {
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
+	overflow: hidden;
 	color: var(--clr-entry-text);
 }
 
@@ -114,6 +116,7 @@ body {
 	padding: 5px 10px;
 	border-radius: 5px;
 	text-align: center;
+	overflow: hidden;
 	color: var(--clr-entry-text);
 }
 
@@ -312,7 +315,8 @@ li{
 		height: auto;
 	}
 	.timeline-show {
-		width: 100%;
+		overflow-x:auto;
+		width: auto;
 	}
 	.app-display {
 		overflow-x: none;
