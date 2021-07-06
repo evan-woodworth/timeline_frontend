@@ -40,13 +40,29 @@ const Welcome = (props) => {
             <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
           </div>
 
-          <div className="container featured-timeline__container">
+          {/* <div className="container featured-timeline__container">
             <div className="row"><h3 className="mb-4" style={{fontWeight:"700"}}>Featured Timelines</h3></div>
             
               <div className=" row" >
-                <h4>Screenshot will go here</h4>
+                <div className="col-sm-4 featured-card">
+                <img className="img-thumbnail rounded mb-2" src={publicTimelines[0]["entries"][4]["image"]} alt="Featured 1" />
+                <Link to={"/publictimelines"}>
+                  <h5 className="card-title">{publicTimelines[0]["title"]}</h5>
+                </Link>
+    
+                </div>
+                <div className="col-sm-4 featured-card">
+                  <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
+                  <h5 className="card-title">{publicTimelines[3]["title"]}</h5>
+                  
+                </div>
+                <div className="col-sm-4 featured-card">
+                  <img className="img-thumbnail rounded mb-2" src="https://via.placeholder.com/350x250" alt="Featured 1" />
+                  <h5 className="card-title">{publicTimelines[2]["title"]}</h5>
+                  
+                </div>
               </div>
-          </div>
+          </div> */}
         </div>
       </>
     )
