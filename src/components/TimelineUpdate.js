@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 const TimelineUpdate = (props) => {
-    console.log(props)
     const {user_id} = props.user;
     const {id, title} = props.timeline;
     let privacy = props.timeline.private
