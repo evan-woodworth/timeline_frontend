@@ -38,6 +38,7 @@ body {
 } */
 
 .timeline-display {
+  height: 100% ;
 	overflow-x:scroll;
 }
 
@@ -100,6 +101,7 @@ body {
 	text-align: center;
 	overflow: hidden;
 	color: var(--clr-entry-text);
+  max-height: 290px;
 }
 
 .timeline-entry-top img {
@@ -118,6 +120,7 @@ body {
 	text-align: center;
 	overflow: hidden;
 	color: var(--clr-entry-text);
+  max-height: 290px;
 }
 
 .timeline-entry-bottom img {
@@ -223,6 +226,11 @@ header{
 	color: white;
 }
 
+.featured-img{
+  max-width:98%;
+
+}
+
 /* .featured-timeline__container{
 	display: flex;
 	justify-content: space-between;
@@ -303,11 +311,6 @@ li{
     margin: 7% 15%;
   }
 }
-
-/* @media screen and (min-width:768px) and (max-width:992px) {
-
-} */
-
 
 @media only screen and (max-width:550px){
 	html {

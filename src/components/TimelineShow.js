@@ -43,7 +43,7 @@ const wrangleEntries = ( incomingList, cardWidth, width, windowZoom ) => {
                     newEntry['title'] = "Multiple";
                 }
                 // update nest's displayed fields
-                newEntry['date'] = `${newEntry.nestedEntries[0].date} - ${entryList[j].date}`;
+                newEntry['date'] = `${newEntry.nestedEntries[0].date}-${entryList[j].date}`;
                 newEntry['summary'] = `${newEntry.nestedEntries.length} entries`;
                 if (j === entryList.length-1){
                     i++;

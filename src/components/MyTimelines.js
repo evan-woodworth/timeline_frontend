@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import NewTimeline from './NewTimeline';
+import TimelineDelete from './TimelineDelete';
+import TimelineUpdate from './TimelineUpdate';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 
@@ -12,6 +14,10 @@ export default function MyTimelines(props) {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const [newTimeline, setNewTimeline] = useState(false);
     const [timelineChange, setTimelineChange] = useState(false);
+    const [deletePage, setDeletePage] = useState(false);
+    const [deleteTimeline, setDeleteTimeline] = useState('');
+    const [updatePage, setUpdatePage] = useState(false);
+    const [updateTimeline, setUpdateTimeline] = useState('');
 
     const getUserTimelines = async (userId) => {
         try {
@@ -50,14 +56,34 @@ export default function MyTimelines(props) {
         });
     }
 
-    const handleDeleteTimeline = (e, timeline) => {
-        axios.delete(`${REACT_APP_SERVER_URL}/api/timelines/${timeline.id}`)
+    const handleDeleteTimeline = (e, id) => {
+        axios.delete(`${REACT_APP_SERVER_URL}/api/timelines/${id}/`)
         .then(() => {
             setTimelineChange(!timelineChange)
         }).catch(error => {
             console.log(error);
             alert('Unable to delete timeline. Please try again.');
         });
+    }
+
+    const handleUpdateTimeline = (e, data) => {
+        axios.put(`${REACT_APP_SERVER_URL}/api/timelines/${data.id}/`, data)
+        .then(() => {
+            setTimelineChange(!timelineChange)
+        }).catch(error => {
+            console.log(error);
+            alert('Unable to update timeline. Please try again.')
+        })
+    }
+
+    const handleDeletePage = (e, timeline) => {
+        setDeleteTimeline(timeline);
+        setDeletePage(!deletePage);
+    }
+
+    const handleUpdatePage = (e, timeline) => {
+        setUpdateTimeline(timeline)
+        setUpdatePage(!updatePage);
     }
 
     const displayUserTimelines = userTimelines.map((timeline, idx)=>(
@@ -70,7 +96,8 @@ export default function MyTimelines(props) {
                             pathname:'/timelines',
                             state: {timeline: timeline}
                         }} className="timeline-links"> {timeline.title} </Link>
-                        <button className="btn btn-danger float-right" onClick={e=>{ if (window.confirm('Do you want to delete this timeline?')) handleDeleteTimeline(e, timeline)}}>Delete</button>
+                        <button className="btn btn-danger float-right" onClick={e=>handleDeletePage(e, timeline)}> Delete </button>
+                        <button className="btn btn-secondary float-right" onClick={e=>handleUpdatePage(e, timeline)} > Update </button>
                     </div>
                 )}
             </li>
@@ -98,6 +125,16 @@ export default function MyTimelines(props) {
             <div className="timeline-modal">
                 <NewTimeline user={props.user} handleNewTimeline={handleNewTimeline} handleTimelineSubmit={handleTimelineSubmit}/>
             </div> 
+            : <></>}
+            { (updatePage === true) ? 
+            <div className="timeline-modal">
+                <TimelineUpdate user={props.user} timeline={updateTimeline} handleUpdatePage={handleUpdatePage} handleUpdateTimeline={handleUpdateTimeline}/>
+            </div> 
+            : <></> }
+            { (deletePage === true) ? 
+            <div className="timeline-modal">
+                <TimelineDelete user={props.user} timeline={deleteTimeline} handleDeleteTimeline={handleDeleteTimeline} handleDeletePage={handleDeletePage}/>
+            </div>
             : <></>}
         </div>
     )
