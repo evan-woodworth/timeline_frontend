@@ -69,7 +69,7 @@ body {
 }
 
 .timeline {
-	margin: 300px 60px;
+	margin: 400px 60px;
 	height: 4px;
 	/* width: var(--timeline-length); */
 	background-color: var(--clr-timeline);
@@ -416,25 +416,33 @@ li{
 	#signup-link-login {
 		font-size: 13px;
 	}
-	.timeline-new-form{
-		margin: 50% 15%;
-	}
-	.timeline-new-form h2{
-		font-size: 1.5rem;
-	}
-	.mytimelines-list-container{
-		display:block;
-		text-align: center;
-	}
-	.mytimelines-list__text{
-		font-size: 1.2rem;
-	}
-	.mytimelines-list-container__text{
-		border: 1px solid grey;
-		border-radius: 5px;
-		padding: 5px;
-		text-align: center;
-	}
+  .timeline-new-form{
+    margin: 50% 15%;
+  }
+  .timeline-new-form h2{
+    font-size: 1.5rem;
+  }
+  .mytimelines-list-container{
+    display:block;
+    text-align: center;
+  }
+  .mytimelines-list__text{
+    font-size: 1.2rem;
+  }
+  .mytimelines-list-container__text{
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .timeline-links{
+    text-decoration: none;
+    
+  }
+  .mytimelines-button__container{
+    padding-top: 10px;
+  }
 
 	.timeline-links{
 		text-decoration: none;
