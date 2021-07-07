@@ -68,6 +68,19 @@ Every entry is processed before being placed on a displayed timeline.
 4. Each resulting entry is assigned an alternating side of the timeline.
 5. The array of entries is stored in state.
 
+On the back end, serializers determine what the api requests return. For example, here is the api request that asks for a user's basic timeline information: id, title, and private.
+
+```py
+class TimelineLinkSerializer(serializers.RelatedField):
+    def to_representation(self, value):
+        id = value.id
+        title = value.title
+        private = value.private
+        return {'id': id, 'title':title, 'private':private}
+```
+
+On the front end, when a user selects a specific timeline to view, the basic information for that timeline is sent to the timeline container, which queries for the more specific entry information. The timeline's array of entries is then processed and displayed to the timeline.
+
 The splitDateTime function takes an entry's datetime field, and provides data that we can use to place an entry on it's timeline.
 
 ```js
