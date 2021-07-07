@@ -26,7 +26,6 @@ const Welcome = (props) => {
       })
     }
 
-
     return (
       <>
       <header /> 

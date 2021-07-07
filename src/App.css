@@ -43,7 +43,7 @@ body {
 } */
 
 .timeline-display {
-  height: 100% ;
+  	height: 100% ;
 	overflow-x:scroll;
 }
 
@@ -57,6 +57,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	margin-top: 5px;
+	z-index: 1;
 }
 .timeline-zoom-display {
 	margin: 0 8px;
@@ -68,8 +69,7 @@ body {
 }
 
 .timeline {
-	margin: 300px 60px;
-	margin-top: 400px;
+	margin: 400px 60px;
 	height: 4px;
 	/* width: var(--timeline-length); */
 	background-color: var(--clr-timeline);
@@ -188,7 +188,7 @@ body {
 
 .timeline-links{
 	color:var(--clr-link-text);
-  text-decoration: underline;
+  	text-decoration: underline;
 }
 
 .timeline-links:hover{
@@ -206,7 +206,7 @@ body {
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	display: flex;
-  z-index: 2;
+  	z-index: 2;
 }
 
 .timeline-modal img {
@@ -238,30 +238,17 @@ header{
 }
 
 .featured-img{
-  max-width:98%;
-
+  	max-width:98%;
 }
 
 .mytimelines-container{
-  max-width:800px;
+  	max-width:800px;
 }
 
 .mytimelines-list-container{
-  display:flex;
-  justify-content: space-between;
-}
-.mytimelines-list-container__text{
-
-}
-
-/* .featured-timeline__container{
-	display: flex;
+	display:flex;
 	justify-content: space-between;
-} */
-
-/* .navbar {
-	position: absolute;
-} */
+}
 
 .nav-link--textcolor{
 	color:white !important;
@@ -281,8 +268,6 @@ li{
 .featured-card ul{
 	padding-left: 0px !important;
 }
-
-
 
 .teamContainer {
 	display: flex;
@@ -324,15 +309,15 @@ li{
 .header-tagline{
 	font-weight: 700;
 	margin-bottom: 5px;
-  text-shadow: 0px 0px 4px rgb(0 0 0);
+  	text-shadow: 0px 0px 4px rgb(0 0 0);
 }
 
 .mytimelines-list__text{
-  font-weight: 500;
+  	font-weight: 500;
 }
 
 .header-tagline-paragraph{
-  text-shadow: 0px 0px 4px rgb(0 0 0);
+  	text-shadow: 0px 0px 4px rgb(0 0 0);
 }
 
 
@@ -340,9 +325,9 @@ li{
 	.featured-timeline__container{
 		margin-top: 135px;
 	}
-  .timeline-new-form{
-    margin: 7% 15%;
-  }
+	.timeline-new-form{
+		margin: 7% 15%;
+	}
 }
 
 @media only screen and (max-width:550px){
@@ -452,12 +437,17 @@ li{
   }
 
   .timeline-links{
-    /* color: #007bff; */
-    /* text-decoration: underline; */
+    text-decoration: none;
     
   }
   .mytimelines-button__container{
     padding-top: 10px;
   }
 
+	.timeline-links{
+		text-decoration: none;
+	}
+	.mytimelines-button__container{
+		padding-top: 10px;
+	}
 }
