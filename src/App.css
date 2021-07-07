@@ -69,6 +69,7 @@ body {
 
 .timeline {
 	margin: 300px 60px;
+	margin-top: 400px;
 	height: 4px;
 	/* width: var(--timeline-length); */
 	background-color: var(--clr-timeline);
