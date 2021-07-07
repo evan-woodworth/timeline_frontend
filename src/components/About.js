@@ -7,6 +7,7 @@ const About = () => {
                 <h2 className="mb-5" style={{fontWeight:"600"}}>About Jikangu</h2>
                 <h4>What is Jikangu?</h4>
                 <p>Jikangu is a web app that makes it simple to create timelines of your favorite subjects. Whether its world events, historical figures, or your favorite super heroes, Jikangu lets you visually depict these items in  an easy to read, chronological timeline.</p>
+                <img alt="site demo" src="/img/site-demo.gif" className="featured-img"/>
                 <h4>What does Jikangu mean?</h4>
                 <p>Jikangu is a portmanteau of the Japanese words “jikan” and “gu”, which mean "time" and "tool", respectively. </p>
             </div>
