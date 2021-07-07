@@ -28,7 +28,7 @@ export default function MyTimelines(props) {
             return theTimelines;
         } catch (error) {
             console.log("failed to get user's timeline data", error)
-            return [{id:"fail",title:"Failed to retrieve timeline data..."}];
+            return [{id:"fail",title:"Failed to retrieve timeline data, please try logging in again."}];
         }
     }
 

@@ -65,7 +65,7 @@ function App() {
     return (
         <div className="App">
             <Navbar isAuth={isAuthenticated} handleLogout={handleLogout} />
-            <div className="app-display mt-5 px-5">
+            <div className="app-display">
                 <Switch>
                     <Route exact path='/' render={(props) => <Welcome {...props} user={currentUser} />} />
                     <Route path='/signup' render={(props) => <Signup {...props} nowCurrentUser={nowCurrentUser} />} />
