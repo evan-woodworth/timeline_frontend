@@ -12,6 +12,8 @@ Links:
 
 ![Demo](./public/img/site-demo.gif)
 
+<hr>
+
 ## Key Features
 
 The easy-to-navigate user interface allows a user to:
@@ -24,7 +26,7 @@ The easy-to-navigate user interface allows a user to:
 
 At it's core, Jikangu follows REACT best practices. It breaks functionality apart into separate, reusable components that pass information downward as props. It uses state variables, hooks, and conditional rendering to provide the user with a streamlined, yet highly customizable experience.
 
-### Key Components
+## Key Components
 
 ```
             My Timelines - queries the database for a user's 
@@ -55,9 +57,72 @@ At it's core, Jikangu follows REACT best practices. It breaks functionality apar
             |______  /\___  >____  /___|  /____  >
                     \/     \/     \/     \/     \/ 
 ```
-### Code Snippets
+<hr>
 
-#### Data Flow - Entries
+## Entity Relationship Diagram
+
+The following ERD details the specific information stored by Jikangu's database, and the associations within.
+
+![ERD](./public/img/Jikangu-ERD.jpeg)
+
+### The Views
+
+Jikangu's backend uses the following views for navigating the API:
+
+
+| Method |  PATH                 |   Purpose
+| ---    |  ----                 |   -------
+| GET    |  /api/                |   Backend homepage with the most useful button
+| POST   |  /api/login/          |   Allows users to login
+| POST   |  /api/signup/         |   Allow users to create an account
+| GET    |  /api/users/          |   Retrieves all users and their associated timelines
+| GET    |  /api/users/:id/      |   Retrieves a specific user's information and their associated timelines
+| GET    |  /api/timelines/      |   Retrieves all timelines
+| POST   |  /api/timelines/      |   Creates a timeline
+| GET    |  /api/timelines/:id/  |   Retrieves a specific timeline and its associated entries
+| PUT    |  /api/timelines/:id/  |   Updates a specific timeline
+| DELETE |  /api/timelines/:id/  |   Deletes a specific timeline
+| GET    |  /api/entries/        |   Retrieves all entries and its associated timelines
+| POST   |  /api/entries/        |   Creates an entry within the specified timeline
+| GET    |  /api/entries/:id     |   Retrieves a specific entry within the specified timeline
+| PUT    |  /api/entries/:id     |   Updates a specific entry within the specified timeline
+| DELETE |  /api/entries/:id     |   Deletes a specific entry within the specified timeline
+
+<hr>
+
+## Code Snippets
+
+### Backend Authentication
+
+By leveraging the frontend authentication template, users are required to provide their credentials, via logging in or signing up, in order to manipulate the timeline. Several routes allow unauthenticated users to view data in order to see how the timeline functions before signing up. The following code handles the functionality of either creating a new user and providing them a token or by retrieving an unexpired token associated with the requesting user.
+
+```py
+class UserSerializerWithToken(serializers.ModelSerializer):
+    token = serializers.SerializerMethodField()
+    password = serializers.CharField(write_only=True)
+
+    def get_token(self, user):
+        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
+        payload = jwt_payload_handler(user)
+        token = jwt_encode_handler(payload)
+        return token
+
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
+    class Meta:
+        model = User
+        fields = ('token', 'username', 'password', 'email')
+```
+
+### Data Flow - Entries
 
 Every entry is processed before being placed on a displayed timeline.
 1. The array of entries is sorted by datetime using a quicksort algorithm.
@@ -67,6 +132,8 @@ Every entry is processed before being placed on a displayed timeline.
     - Recalculated on screen resizing.
 4. Each resulting entry is assigned an alternating side of the timeline.
 5. The array of entries is stored in state.
+
+### Displaying User's Timelines
 
 On the back end, serializers determine what the api requests return. For example, here is the api request that asks for a user's basic timeline information: id, title, and private.
 
@@ -93,6 +160,9 @@ const splitDateTime = (datetime) => {
     return {'date':datetimeArray[0], 'time':datetimeArray[1], daySync}
 }
 ```
+
+### Displaying a Timeline's Entries
+
 An entry is placed on the timeline through CSS styling, using variables passed from the component.
 
 CSS:
@@ -187,19 +257,3 @@ useEffect(()=>{
     };
 }, [])
 ```
-
-### Entity Relationship Diagram
-
-The following ERD details the specific information stored by Jikangu's database, and the associations within.
-
-![ERD](./public/img/Jikangu-ERD.jpeg)
-
-### The Views
-
-Jikangu's backend uses the following views for navigating the API:
-
-- "users": "https://jikangu-backend.herokuapp.com/api/users/"
-- "extendedusers": "https://jikangu-backend.herokuapp.com/api/extendedusers/"
-- "displaytypes": "https://jikangu-backend.herokuapp.com/api/displaytypes/"
-- "timelines": "https://jikangu-backend.herokuapp.com/api/timelines/"
-- "entries": "https://jikangu-backend.herokuapp.com/api/entries/"
