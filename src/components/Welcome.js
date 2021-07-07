@@ -6,25 +6,25 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Welcome = (props) => {
     const payload = {headers: {Authorization: `JWT ${localStorage.getItem('jwtToken')}`}}
 
-    const filteredTimeline = () => {
-      axios.get(`${REACT_APP_SERVER_URL}/api/public_timelines`)
-      .then(response => {
-        console.log(response.data)
-        console.log('Only Public Timelines')
-      }).catch(error => {
-        console.log(error)
-      })
-    }
+    // const filteredTimeline = () => {
+    //   axios.get(`${REACT_APP_SERVER_URL}/api/public_timelines`)
+    //   .then(response => {
+    //     console.log(response.data)
+    //     console.log('Only Public Timelines')
+    //   }).catch(error => {
+    //     console.log(error)
+    //   })
+    // }
   
-    const allTimeline = () => {
-      axios.get(`${REACT_APP_SERVER_URL}/api/timelines`)
-      .then(response => {
-        console.log(response.data)
-        console.log('All Timelines')
-      }).catch(error => {
-        console.log(error)
-      })
-    }
+    // const allTimeline = () => {
+    //   axios.get(`${REACT_APP_SERVER_URL}/api/timelines`)
+    //   .then(response => {
+    //     console.log(response.data)
+    //     console.log('All Timelines')
+    //   }).catch(error => {
+    //     console.log(error)
+    //   })
+    // }
 
     return (
       <>
@@ -34,8 +34,8 @@ const Welcome = (props) => {
             <h1 className="header-tagline">Make learning fun </h1>
             <p className="h5 header-tagline-paragraph">Create easy to read timelines of your favorite subjects</p>
             <Link to="/login"><button className="btn btn-primary mt-1">Get Started</button></Link>
-            <button onClick={filteredTimeline} className="btn btn-primary mt-1" style={{marginLeft:'10px'}}>Timeline Filter</button>
-            <button onClick={allTimeline} className="btn btn-primary mt-1" style={{marginLeft:'10px'}}>All Timelines</button>
+            {/* <button onClick={filteredTimeline} className="btn btn-primary mt-1" style={{marginLeft:'10px'}}>Timeline Filter</button>
+            <button onClick={allTimeline} className="btn btn-primary mt-1" style={{marginLeft:'10px'}}>All Timelines</button> */}
           </div>
 
           <div className="containerfeatured-timeline__container">
