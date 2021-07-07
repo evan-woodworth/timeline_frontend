@@ -2,13 +2,15 @@
 
 Jikangu is a web app that makes it simple to create timelines of your favorite subjects. Whether its world events, historical figures, or your favorite super heroes, Jikangu lets you visually depict these items in  an easy to read, chronological timeline.
 
-[Jikangu](https://jikangu.herokuapp.com/)
+Links:
 
-[Jikangu Backend Repository](https://github.com/evan-woodworth/timeline_backend)
+- [Jikangu](https://jikangu.herokuapp.com/)
 
-![Featured Timeline](./public/img/site-demo.gif)
+- [Jikangu Backend Repository](https://github.com/evan-woodworth/timeline_backend)
 
-![Demo(./public/img/MCU-Timeline_MD.png)
+![Featured Timeline](./public/img/MCU-Timeline_MD.png)
+
+![Demo](./public/img/site-demo.gif)
 
 ## Key Features
 
